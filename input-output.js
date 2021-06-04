@@ -8,7 +8,7 @@ const promisedReadline = () =>
       // throw new Error('TIMEOUT wait line stdin');
       // eslint-disable-next-line prefer-promise-reject-errors
       reject('TIMEOUT wait line stdin');
-    }, 1000);
+    }, 10000);
 
     rl.once('line', (data) => {
       clearTimeout(id);
@@ -36,9 +36,7 @@ export const input = async (INPUT_LINE_COUNT = 1) => {
   return inputLines;
 };
 
-export const output = (inputLines, inputProcessing = (lines) => lines) => {
-  const outputLines = inputProcessing(inputLines);
-
+export const output = (outputLines) => {
   for (const outputLine of outputLines) {
     process.stdout.write(String(outputLine));
   }
