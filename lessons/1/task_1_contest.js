@@ -21,7 +21,25 @@
 // Формат вывода
 // Выходной файл должен содержать одно целое число — температуру, которая установится в комнате через час.
 
-const inputProcessing = (lines) => {
+const readline = require('readline');
+
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+
+const inputLines = [];
+
+rl.on('line', (data) => {
+  inputLines.push(data.toString());
+});
+
+rl.on('close', () => {
+  const outputLines = inputProcessing(inputLines);
+
+  for (const outputLine of outputLines) {
+    process.stdout.write(String(outputLine));
+  }
+});
+
+function inputProcessing(lines) {
   const [temp, mode] = lines;
   const [tRoomInput, tCondInput] = temp.split(' ');
 
@@ -32,25 +50,7 @@ const inputProcessing = (lines) => {
     fan: (tRoom, tCond) => tRoom,
   };
 
-  return mapModeToFn[mode](tRoomInput, tCondInput);
-};
+  const tempAfter = mapModeToFn[mode](Number(tRoomInput), Number(tCondInput));
 
-const inputLines = [];
-const INPUT_LINE_COUNT = 2;
-
-process.stdin.on('data', (data) => {
-  inputLines.push(data.toString().replace('\r\n', ''));
-  // inputLines.push(data.toString().match(/^\s*(.*)\s*/)[1]);
-
-  if (inputLines.length === INPUT_LINE_COUNT) {
-    // console.log({ inputLines });
-    const outputLines = inputProcessing(inputLines);
-    // console.log({ outputLines });
-
-    for (const outputLine of outputLines) {
-      process.stdout.write(String(outputLine));
-    }
-
-    process.exit();
-  }
-});
+  return [tempAfter];
+}

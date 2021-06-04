@@ -23,7 +23,7 @@
 
 import { input, output } from '../../input-output.js';
 
-const inputProcessing = (lines) => {
+function inputProcessing(lines) {
   const [temp, mode] = lines;
   const [tRoomInput, tCondInput] = temp.split(' ');
 
@@ -34,8 +34,10 @@ const inputProcessing = (lines) => {
     fan: (tRoom, tCond) => tRoom,
   };
 
-  return mapModeToFn[mode](tRoomInput, tCondInput);
-};
+  const tempAfter = mapModeToFn[mode](Number(tRoomInput), Number(tCondInput));
+
+  return [tempAfter];
+}
 
 (async () => {
   const inputLines = await input(2);
