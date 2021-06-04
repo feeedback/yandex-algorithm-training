@@ -10,14 +10,25 @@ rl.on('line', (data) => {
 
 rl.on('close', () => {
   const outputLines = inputProcessing(inputLines);
-  process.stdout.write(outputLines.join('\n'));
+  process.stdout.write(Array.isArray(outputLines) ? outputLines.join('\n') : String(outputLines));
 });
 
 function inputProcessing(lines) {
-  const [basePhone, ...phones] = lines.map((phonesRaw) =>
-    phonesRaw.replace(/\D/g, '').padStart(11, '8495').slice(1)
-  );
+  const zeroRoot = 'NO SOLUTION';
+  const infinitelyRoot = 'MANY SOLUTIONS';
 
-  const result = phones.map((phone) => (phone === basePhone ? 'YES' : 'NO'));
-  return result;
+  const [a, b, c] = lines.map(Number);
+  if (c < 0) {
+    return zeroRoot;
+  }
+  if (a === 0) {
+    return c ** 2 === b ? infinitelyRoot : zeroRoot;
+  }
+
+  const x = (c ** 2 - b) / a;
+
+  if (Number.isInteger(x)) {
+    return x;
+  }
+  return zeroRoot;
 }

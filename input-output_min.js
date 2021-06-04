@@ -10,7 +10,7 @@ rl.on('line', (data) => {
 
 rl.on('close', () => {
   const outputLines = inputProcessing(inputLines);
-  process.stdout.write(outputLines.join('\n'));
+  process.stdout.write(Array.isArray(outputLines) ? outputLines.join('\n') : String(outputLines));
 });
 // function inputProcessing(lines) {
 //   return [];
