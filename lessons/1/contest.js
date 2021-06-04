@@ -10,18 +10,14 @@ rl.on('line', (data) => {
 
 rl.on('close', () => {
   const outputLines = inputProcessing(inputLines);
-
-  for (const outputLine of outputLines) {
-    process.stdout.write(String(outputLine));
-  }
+  process.stdout.write(outputLines.join('\n'));
 });
 
 function inputProcessing(lines) {
-  const [a, b, c] = lines.map(Number);
+  const [basePhone, ...phones] = lines.map((phonesRaw) =>
+    phonesRaw.replace(/\D/g, '').padStart(11, '8495').slice(1)
+  );
 
-  let isPossible = 'NO';
-  if (a < b + c && b < a + c && c < a + b) {
-    isPossible = 'YES';
-  }
-  return [isPossible];
+  const result = phones.map((phone) => (phone === basePhone ? 'YES' : 'NO'));
+  return result;
 }

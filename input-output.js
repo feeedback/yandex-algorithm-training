@@ -38,7 +38,7 @@ export const input = async (INPUT_LINE_COUNT = 1) => {
 
 export const output = (outputLines) => {
   for (const outputLine of outputLines) {
-    process.stdout.write(String(outputLine));
+    process.stdout.write(`${String(outputLine)}\n`);
   }
   // process.exit();
 };
