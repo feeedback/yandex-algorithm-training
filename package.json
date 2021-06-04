@@ -1,0 +1,22 @@
+{
+  "name": "yandex_algo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest --passWithNoTests"
+  },
+  "author": "Alexander Rzhanitsyn",
+  "license": "ISC",
+  "engines": {
+    "node": ">=14"
+  },
+  "type": "module",
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {}
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "bin": {}
+}
