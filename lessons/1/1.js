@@ -41,8 +41,10 @@
 // });
 import { input, output } from '../../input-output.js';
 
-const inputLines = input(2);
-output(inputLines, (lines) => `OUT   ${lines}`);
+(async () => {
+  const inputLines = await input(2);
+  output(inputLines, (lines) => `OUT   ${lines}`);
+})();
 
 // const [troom, tcond] =
 // const mode = {
