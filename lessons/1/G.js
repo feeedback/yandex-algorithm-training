@@ -16,30 +16,34 @@
 function inputProcessing(lines) {
   const [N, K, M] = lines[0].split(' ').map(Number);
 
-  console.log({ N, K, M });
+  if (K < M) {
+    return 0;
+  }
+
   let tailFromParts = 0;
   let sum = N;
   let partsRes = 0;
-  do {
+
+  while (sum >= K) {
     const blanksCount = Math.floor(sum / K);
     sum -= blanksCount * K;
 
     const partsCount = Math.floor(K / M) * blanksCount;
     partsRes += partsCount;
-    tailFromParts = (K % M) * partsCount;
+    tailFromParts = (K % M) * blanksCount;
     sum += tailFromParts;
-    console.log({ blanksCount, partsCount, tailFromParts, sum });
-  } while (sum >= K);
+  }
 
-  console.log({ partsRes });
-  return partsRes;
+  return String(partsRes);
 }
 
 (async () => {
   // const inputLines = await input(1);
-  const inputLines = ['19 3 2'];
+  const inputLines = ['30 5 7'];
   console.log({ inputLines });
   const outputLines = inputProcessing(inputLines);
   console.log({ outputLines });
   // output(outputLines);
 })();
+
+export default inputProcessing;
