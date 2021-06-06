@@ -16,7 +16,10 @@
     "testEnvironment": "node",
     "transform": {}
   },
-  "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "@jest/globals": "^27.0.3",
+    "jest": "^27.0.4",
+    "jest-cli": "^27.0.4"
+  },
   "bin": {}
 }
