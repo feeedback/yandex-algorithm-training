@@ -26,3 +26,6 @@ test('6', () => {
 test('7', () => {
   expect(fn(['40 5 60 6 5'])).toStrictEqual('4 5');
 });
+test('9', () => {
+  expect(fn(['753 10 1000 1 1'])).toStrictEqual('1 1');
+});
