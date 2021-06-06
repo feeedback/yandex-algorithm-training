@@ -42,9 +42,6 @@ function inputProcessing(lines) {
       // console.log('oldAddress.room / oldAddress.floor < 1');
       return [-1, -1].join(' ');
     }
-  } else if (oldAddress.room / (oldAddress.podezd * oldAddress.floor) < floorMax) {
-    // console.log('oldAddress.room / (oldAddress.podezd * oldAddress.floor) < floorMax');
-    return [-1, -1].join(' ');
   }
   if (oldAddress.room === output.room) {
     // console.log('oldAddress.room === output.room');
@@ -61,9 +58,9 @@ function inputProcessing(lines) {
     // console.log({ roomByFloor, newFloorRaw });
 
     output.podezd = newFloorRaw < floorMax ? Math.ceil(newFloorRaw / floorMax) : 0;
-
+    output.floor = output.floor ?? output.room < oldAddress.room ? oldAddress.floor : 0;
     // console.log({ output });
-    return [output.podezd, output.floor ?? 0].join(' '); // этаж нельзя определить точно
+    return [output.podezd, output.floor].join(' '); // этаж нельзя определить точно
   }
 
   const roomByFloorRaw = Math.ceil(oldAddress.room / ((oldAddress.podezd - 1) * floorMax + oldAddress.floor));
@@ -103,9 +100,13 @@ function inputProcessing(lines) {
   const podezdArr = [...variantPodezd];
   const floorArr = [...variantFloor];
 
-  output.podezd = podezdArr.length === 1 ? podezdArr[0] : 0;
-  output.floor = floorArr.length === 1 ? floorArr[0] : 0;
-
+  if (podezdArr.length === 0 || floorArr.length === 0) {
+    output.podezd = -1;
+    output.floor = -1;
+  } else {
+    output.podezd = podezdArr.length === 1 ? podezdArr[0] : 0;
+    output.floor = floorArr.length === 1 ? floorArr[0] : 0;
+  }
   // floor (этаж) = от 1 до floorMax, если floorMax = 1, то floor = 1
   // podezd (подъезд) = от 1 до ?
 
