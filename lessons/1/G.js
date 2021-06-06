@@ -1,45 +1,43 @@
-// В школе решили на один прямоугольный стол поставить два прямоугольных ноутбука.
-// Ноутбуки нужно поставить так, чтобы их стороны были параллельны сторонам стола.
-// Определите, какие размеры должен иметь стол, чтобы оба ноутбука на него поместились, и площадь стола была минимальна.
+// Имеется N кг металлического сплава. Из него изготавливают заготовки массой K кг каждая.
+// После этого из каждой заготовки вытачиваются детали массой M кг каждая (из каждой заготовки вытачивают максимально возможное количество деталей).
+// Если от заготовок после этого что - то остается, то этот материал возвращают к началу производственного цикла и сплавляют с тем,
+// что осталось при изготовлении заготовок.Если того сплава, который получился, достаточно для изготовления хотя бы одной заготовки,
+// то из него снова изготавливают заготовки, из них – детали и т.д.
+// Напишите программу, которая вычислит, какое количество деталей может быть получено по этой технологии из имеющихся исходно N кг сплава.
 
 // Формат ввода
-// Вводится четыре натуральных числа, первые два задают размеры одного ноутбука, а следующие два — размеры второго. Числа не превышают 1000.
+// Вводятся N, K, M. Все числа натуральные и не превосходят 200.
 
 // Формат вывода
-// Выведите два числа — размеры стола. Если возможно несколько ответов, выведите любой из них (но только один).
+// Выведите одно число — количество деталей, которое может получиться по такой технологии.
 
 // import { input, output } from '../../input-output.js';
 
 function inputProcessing(lines) {
-  const [x1, y1, x2, y2] = lines[0].split(' ').map(Number);
-  // console.log({ x1, y1, x2, y2 });
+  const [N, K, M] = lines[0].split(' ').map(Number);
 
-  const side1 = x1 + x2;
-  const side2 = Math.max(y1, y2);
+  console.log({ N, K, M });
+  let tailFromParts = 0;
+  let sum = N;
+  let partsRes = 0;
+  do {
+    const blanksCount = Math.floor(sum / K);
+    sum -= blanksCount * K;
 
-  const side3 = y1 + y2;
-  const side4 = Math.max(x1, x2);
+    const partsCount = Math.floor(K / M) * blanksCount;
+    partsRes += partsCount;
+    tailFromParts = (K % M) * partsCount;
+    sum += tailFromParts;
+    console.log({ blanksCount, partsCount, tailFromParts, sum });
+  } while (sum >= K);
 
-  const side5 = x1 + y2;
-  const side6 = Math.max(x2, y1);
-
-  const side7 = x2 + y1;
-  const side8 = Math.max(x1, y2);
-
-  const figures = {
-    [side1 * side2]: [side1, side2],
-    [side3 * side4]: [side3, side4],
-    [side5 * side6]: [side5, side6],
-    [side7 * side8]: [side7, side8],
-  };
-  // console.log({ res });
-  const minAreaSides = figures[Math.min(...Object.keys(figures).map(Number))];
-  return minAreaSides;
+  console.log({ partsRes });
+  return partsRes;
 }
 
 (async () => {
   // const inputLines = await input(1);
-  const inputLines = ['10 2 2 10'];
+  const inputLines = ['19 3 2'];
   console.log({ inputLines });
   const outputLines = inputProcessing(inputLines);
   console.log({ outputLines });

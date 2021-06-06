@@ -1,4 +1,3 @@
-/* eslint-disable prefer-destructuring */
 // Бригада скорой помощи выехала по вызову в один из отделенных районов.
 // К сожалению, когда диспетчер получил вызов, он успел записать только адрес дома и номер квартиры K1, а затем связь прервалась.
 // Однако он вспомнил, что по этому же адресу дома некоторое время назад скорая помощь выезжала в квартиру K2, которая расположена в подъезда P2 на этаже N2.
@@ -14,120 +13,70 @@
 // import { input, output } from '../../input-output.js';
 
 function inputProcessing(lines) {
+  const getPodezd = (floorRaw, floorMax) => Math.ceil(floorRaw / floorMax);
+  const getFloor = (floorRaw, podezd, floorMax) => Math.floor(floorRaw - (podezd - 1) * floorMax);
+
   const [K1, M, K2, P2, N2] = lines[0].split(' ').map(Number);
 
   const floorMax = M;
-
-  const oldAddress = {
+  const oldAddr = {
     room: K2,
     floor: N2,
     podezd: P2,
   };
-  const output = {
+  const newAddr = {
     room: K1,
-    // podezd: P2,
-    // floor: N2,
   };
-  console.log({ oldAddress, floorMax });
-  // const roomByFloor = Math.ceil(
-  //   oldAddress.room / ((oldAddress.podezd - 1) / (oldAddress.floor % floorMax))
-  // );
-  if (oldAddress.floor > floorMax) {
-    console.log('oldAddress.floor > floorMax');
+
+  if (oldAddr.floor > floorMax || (oldAddr.podezd === 1 && oldAddr.room / oldAddr.floor < 1)) {
     return [-1, -1].join(' ');
   }
-  if (oldAddress.podezd === 1) {
-    console.log('oldAddress.podezd === 1');
-    if (oldAddress.room / oldAddress.floor < 1) {
-      console.log('oldAddress.room / oldAddress.floor < 1');
-      return [-1, -1].join(' ');
-    }
-  }
-  // else if (oldAddress.room / (oldAddress.podezd * oldAddress.floor) < floorMax) {
-  //   console.log('oldAddress.room / (oldAddress.podezd * oldAddress.floor) < floorMax');
-  //   return [-1, -1].join(' ');
-  // }
-  if (oldAddress.room === output.room) {
-    console.log('oldAddress.room === output.room');
-    return [oldAddress.podezd, oldAddress.floor].join(' ');
-  }
+
   if (floorMax === 1) {
-    console.log('floorMax === 1');
-    output.floor = floorMax;
-  }
-  if (oldAddress.floor === 1 && oldAddress.podezd === 1) {
-    console.log('oldAddress.floor === 1 && oldAddress.podezd === 1', 'этаж нельзя определить');
-    const roomByFloor = Math.ceil(oldAddress.room / ((oldAddress.podezd - 1) * floorMax + oldAddress.floor));
-    const newFloorRaw = Math.ceil(output.room / roomByFloor);
-    console.log({ roomByFloor, newFloorRaw });
-
-    output.podezd = newFloorRaw < floorMax ? Math.ceil(newFloorRaw / floorMax) : 0;
-    output.floor = output.floor ?? output.room < oldAddress.room ? oldAddress.floor : 0;
-
-    console.log({ output });
-    return [output.podezd, output.floor].join(' '); // этаж нельзя определить точно
+    newAddr.floor = floorMax;
   }
 
-  const roomByFloorRaw = Math.ceil(oldAddress.room / ((oldAddress.podezd - 1) * floorMax + oldAddress.floor));
-  // const newFloorRaw = Math.ceil(output.room / roomByFloor);
-  // console.log({
-  //   roomByFloor,
-  //   newFloorRaw,
-  // });
-  const variantRoomByFloor = new Set();
+  const roomByFloorRaw = Math.ceil(oldAddr.room / ((oldAddr.podezd - 1) * floorMax + oldAddr.floor));
+
+  if (oldAddr.floor === 1 && oldAddr.podezd === 1) {
+    const floorRaw = Math.ceil(newAddr.room / roomByFloorRaw);
+
+    newAddr.podezd = floorRaw < floorMax ? getPodezd(floorRaw, floorMax) : 0;
+    newAddr.floor = newAddr.floor ?? newAddr.room < oldAddr.room ? oldAddr.floor : 0;
+
+    return [newAddr.podezd, newAddr.floor].join(' ');
+  }
+
   const variantPodezd = new Set();
   const variantFloor = new Set();
 
-  // output.podezd = newFloorRaw < floorMax ? Math.ceil(newFloorRaw / floorMax) : 0;
   for (let roomByFloorI = roomByFloorRaw; roomByFloorI <= roomByFloorRaw + 1; roomByFloorI++) {
-    console.log(`oldAddress.room ${oldAddress.room} / roomByFloorI ${roomByFloorI}`);
-    const floorInputRaw = Math.ceil(oldAddress.room / roomByFloorI);
-    const podezdInput = Math.ceil(floorInputRaw / floorMax);
-    const floorInput = Math.floor(floorInputRaw - (podezdInput - 1) * floorMax);
-    console.log({ floorInputRaw, floorInput, podezdInput });
+    const floorInputRaw = Math.ceil(oldAddr.room / roomByFloorI);
+    const podezdInput = getPodezd(floorInputRaw, floorMax);
+    const floorInput = getFloor(floorInputRaw, podezdInput, floorMax);
 
-    if (floorInput === oldAddress.floor && podezdInput === oldAddress.podezd) {
-      variantRoomByFloor.add(roomByFloorI);
+    if (floorInput === oldAddr.floor && podezdInput === oldAddr.podezd) {
+      const floorRaw = Math.ceil(newAddr.room / roomByFloorI);
+      const podezd = getPodezd(floorRaw, floorMax);
+      const floor = newAddr.floor ?? getFloor(floorRaw, podezd, floorMax);
 
-      const newFloorRaw = Math.ceil(output.room / roomByFloorI);
-      const podezd = Math.ceil(newFloorRaw / floorMax);
-      const floor = output.floor ?? Math.floor(newFloorRaw - (podezd - 1) * floorMax);
-
-      console.log({ newFloorRaw, podezd, floor });
       variantPodezd.add(podezd);
       variantFloor.add(floor);
     }
   }
-  console.log({ variantRoomByFloor });
-  console.log({ variantPodezd });
-  console.log({ variantFloor });
 
   const podezdArr = [...variantPodezd];
   const floorArr = [...variantFloor];
 
   if (podezdArr.length === 0 || floorArr.length === 0) {
-    output.podezd = -1;
-    output.floor = -1;
+    newAddr.podezd = -1;
+    newAddr.floor = -1;
   } else {
-    output.podezd = podezdArr.length === 1 ? podezdArr[0] : 0;
-    output.floor = floorArr.length === 1 ? floorArr[0] : 0;
+    newAddr.podezd = podezdArr.length === 1 ? podezdArr[0] : 0;
+    newAddr.floor = floorArr.length === 1 ? floorArr[0] : 0;
   }
 
-  // floor (этаж) = от 1 до floorMax, если floorMax = 1, то floor = 1
-  // podezd (подъезд) = от 1 до ?
-
-  // если roomByFloor нельзя определить то podezd 0
-  // если roomByFloor не сходится то данные противоречивы -1 -1
-  console.log({ output });
-  return [output.podezd, output.floor].join(' ');
+  return [newAddr.podezd, newAddr.floor].join(' ');
 }
 
-(async () => {
-  // const inputLines = await input(3);
-  const inputLines = ['753 10 1000 1 1'];
-  // console.log({ inputLines });
-  const outputLines = inputProcessing(inputLines);
-  console.log({ outputLines });
-  // output(outputLines);
-})();
 export default inputProcessing;
