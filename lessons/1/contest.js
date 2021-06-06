@@ -58,29 +58,59 @@ function inputProcessing(lines) {
     // console.log('oldAddress.floor === 1 && oldAddress.podezd === 1', 'этаж нельзя определить');
     const roomByFloor = Math.ceil(oldAddress.room / ((oldAddress.podezd - 1) * floorMax + oldAddress.floor));
     const newFloorRaw = Math.ceil(output.room / roomByFloor);
-    output.podezd = Math.ceil(newFloorRaw / floorMax);
+    // console.log({ roomByFloor, newFloorRaw });
+
+    output.podezd = newFloorRaw < floorMax ? Math.ceil(newFloorRaw / floorMax) : 0;
+
+    // console.log({ output });
     return [output.podezd, output.floor ?? 0].join(' '); // этаж нельзя определить точно
   }
-  // (output.room / oldAddress.room)
-  const roomByFloor = Math.ceil(oldAddress.room / ((oldAddress.podezd - 1) * floorMax + oldAddress.floor));
-  // let num_room_on_fl = math.ceil(int(K2) / ( (int(P2) - 1) * int(M) + int(N2) ))
 
-  // console.log({ roomByFloor });
+  const roomByFloorRaw = Math.ceil(oldAddress.room / ((oldAddress.podezd - 1) * floorMax + oldAddress.floor));
+  // const newFloorRaw = Math.ceil(output.room / roomByFloor);
+  // console.log({
+  //   roomByFloor,
+  //   newFloorRaw,
+  // });
+  const variantRoomByFloor = new Set();
+  const variantPodezd = new Set();
+  const variantFloor = new Set();
 
-  const newFloorRaw = Math.ceil(output.room / roomByFloor);
-  // console.log({ newFloorRaw });
-  output.podezd = Math.ceil(newFloorRaw / floorMax);
-  // output.floor = Math.floor((newFloorRaw - (output.podezd - 1) * floorMax) / roomByFloor);
-  output.floor = Math.floor(newFloorRaw - (output.podezd - 1) * floorMax);
-  // output.floor = (newFloorRaw % floorMax) + 1;
-  // const roomByFloor = oldAddress.room / (floorMax * oldAddress.floor)
-  // const [roomQuery, M, roomOld, P2, N2] = lines.map(Number);
-  // количество квартир на каждой лестничной площадке одинаково.
+  // output.podezd = newFloorRaw < floorMax ? Math.ceil(newFloorRaw / floorMax) : 0;
+  for (let roomByFloorI = roomByFloorRaw; roomByFloorI <= roomByFloorRaw + 1; roomByFloorI++) {
+    // console.log(`oldAddress.room ${oldAddress.room} / roomByFloorI ${roomByFloorI}`);
+    const floorInputRaw = Math.ceil(oldAddress.room / roomByFloorI);
+    const podezdInput = Math.ceil(floorInputRaw / floorMax);
+    const floorInput = Math.floor(floorInputRaw - (podezdInput - 1) * floorMax);
+    // console.log({ floorInputRaw, floorInput, podezdInput });
+
+    if (floorInput === oldAddress.floor && podezdInput === oldAddress.podezd) {
+      variantRoomByFloor.add(roomByFloorI);
+
+      const newFloorRaw = Math.ceil(output.room / roomByFloorI);
+      const podezd = Math.ceil(newFloorRaw / floorMax);
+      const floor = output.floor ?? Math.floor(newFloorRaw - (podezd - 1) * floorMax);
+
+      // console.log({ newFloorRaw, podezd, floor });
+      variantPodezd.add(podezd);
+      variantFloor.add(floor);
+    }
+  }
+  // console.log({ variantRoomByFloor });
+  // console.log({ variantPodezd });
+  // console.log({ variantFloor });
+
+  const podezdArr = [...variantPodezd];
+  const floorArr = [...variantFloor];
+
+  output.podezd = podezdArr.length === 1 ? podezdArr[0] : 0;
+  output.floor = floorArr.length === 1 ? floorArr[0] : 0;
 
   // floor (этаж) = от 1 до floorMax, если floorMax = 1, то floor = 1
   // podezd (подъезд) = от 1 до ?
 
   // если roomByFloor нельзя определить то podezd 0
   // если roomByFloor не сходится то данные противоречивы -1 -1
+  // console.log({ output });
   return [output.podezd, output.floor].join(' ');
 }
