@@ -39,44 +39,54 @@ function inputProcessing(lines) {
   // 5 - 6
   // 1 - 7
   const scores = [...list].sort((a, b) => b - a);
-  const mapIndexToPlaces = {};
-  const winners = [];
+  const mapScoreToPlace = {};
 
-  for (const [index, score] of Object.entries(list)) {
-    const place = scores.indexOf(score) + 1;
-    mapIndexToPlaces[index] = place;
-
-    if (place <= 3) {
-      winners.push(Number(index));
+  for (const [index, score] of Object.entries(scores)) {
+    if (!(score in mapScoreToPlace)) {
+      mapScoreToPlace[score] = Number(index);
     }
   }
-  const minWinnerIndex = Math.min(...winners);
-  let maxPlace = 0;
+
+  const mapIndexToPlaces = {};
+  let winnerIndex = null;
+
+  for (const [index, score] of Object.entries(list)) {
+    const place = mapScoreToPlace[score] + 1;
+    mapIndexToPlaces[index] = place;
+
+    if (winnerIndex === null && place === 1) {
+      winnerIndex = Number(index);
+    }
+  }
+  let maxPlace = Infinity;
+  let ixExist = false;
 
   for (let i = 1; i < list.length - 1; i++) {
     const current = list[i];
-    const place = mapIndexToPlaces[i];
-
+    const place = Number(mapIndexToPlaces[i]);
     if (
       current % 5 === 0 &&
       current % 2 !== 0 &&
-      minWinnerIndex < i &&
+      i > winnerIndex &&
       current > list[i + 1] &&
-      place > maxPlace
+      place < maxPlace
     ) {
+      ixExist = true;
       maxPlace = place;
     }
   }
-  return maxPlace;
+
+  return ixExist ? maxPlace : 0;
 }
 
 (async () => {
   // const inputLines = await input(1);
-  const inputLines = [10, '555 76 661 478 889 453 555 359 601 835'];
-  console.log({ inputLines });
+  const inputLines = [10, '15 15 10']; // 35 place // 49 index?
+  // console.log({ inputLines });
 
   const outputLines = inputProcessing(inputLines);
   console.log({ outputLines });
   // output(outputLines);
 })();
 export default inputProcessing;
+// 2) Победитель чемпионата метал лепешку раньше чем Василий (не обязательно предыдущим)
