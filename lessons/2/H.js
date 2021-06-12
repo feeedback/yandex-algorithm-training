@@ -13,52 +13,24 @@
 // -5 -4 // вывод
 
 function inputProcessing(lines) {
-  const list = lines[0].split(' ').map(Number);
+  const list = lines[0]
+    .split(' ')
+    .map(Number)
+    .sort((a, b) => b - a);
 
   // const seq = [list[0], list[1], list[2]].sort((a, b) => b - a);
-  let [max3, max2, max1] = new Array(3).fill(Number.NEGATIVE_INFINITY);
-  let [min1, min2, min3] = new Array(3).fill(Number.POSITIVE_INFINITY);
+  const { length } = list;
+  const seq = [
+    list[0],
+    list[1],
+    list[2],
+    list[length >= 4 ? length - 1 - 0 : length] ?? null,
+    list[length >= 5 ? length - 1 - 1 : length] ?? null,
+    list[length >= 6 ? length - 1 - 2 : length] ?? null,
+  ];
 
-  for (let i = 0; i < list.length; i++) {
-    const num = list[i];
-    // console.log({ i, num, max1, max2, max3, min1, min2, min3 });
-
-    if (num >= max3) {
-      max1 = max2;
-      max2 = max3;
-      max3 = num;
-    } else if (num >= max2) {
-      max1 = max2;
-      max2 = num;
-    } else if (num >= max1) {
-      if (Number.isFinite(max1)) {
-        if (max1 <= min3) {
-          min1 = min2;
-          min2 = min3;
-          min3 = max1;
-        } else if (max1 <= min2) {
-          min1 = min2;
-          min2 = max1;
-        } else if (max1 < min1) {
-          min1 = max1;
-        }
-      }
-
-      max1 = num;
-    }
-    //
-    else if (num <= min3) {
-      min1 = min2;
-      min2 = min3;
-      min3 = num;
-    } else if (num <= min2) {
-      min1 = min2;
-      min2 = num;
-    } else if (num < min1) {
-      min1 = num;
-    }
-  }
-  const nums = [max1, max2, max3, min1, min2, min3];
+  const nums = seq;
+  // console.log(nums);
   // console.log({ max1, max2, max3, min1, min2, min3 });
   let maxProduct = Number.NEGATIVE_INFINITY;
   let queryNums = [];
@@ -67,15 +39,9 @@ function inputProcessing(lines) {
     for (let y = 0; y < nums.length; y++) {
       if (x !== y) {
         for (let z = 0; z < nums.length; z++) {
-          if (
-            y !== z &&
-            x !== z &&
-            Number.isFinite(nums[x]) &&
-            Number.isFinite(nums[y]) &&
-            Number.isFinite(nums[z])
-          ) {
+          if (y !== z && x !== z && nums[x] !== null && nums[y] !== null && nums[z] !== null) {
             const product = nums[x] * nums[y] * nums[z];
-
+            // console.log([nums[x], nums[y], nums[z]], { product });
             if (product > maxProduct) {
               maxProduct = product;
               queryNums = [nums[x], nums[y], nums[z]];
@@ -85,13 +51,13 @@ function inputProcessing(lines) {
       }
     }
   }
-  console.log({ max1, max2, max3, min1, min2, min3 });
-  console.log(maxProduct, queryNums);
+  // console.log({ max1, max2, max3, min1, min2, min3 });
+  // console.log(maxProduct, queryNums);
   return queryNums.sort((a, b) => a - b).join(' ');
 }
 
 (async () => {
-  const inputLines = ['1 2 1 -2 -1 1'];
+  const inputLines = ['-5 -30000 -12 0 1'];
   console.log({ inputLines });
 
   const outputLines = inputProcessing(inputLines);
