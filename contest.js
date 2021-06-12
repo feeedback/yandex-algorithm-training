@@ -7,7 +7,7 @@ const rl = readline.createInterface({ input: process.stdin, output: process.stdo
 const inputLines = [];
 
 rl.on('line', (data) => {
-  inputLines.push(data.toString());
+  inputLines.push(data.toString().trim());
 });
 
 rl.on('close', () => {
