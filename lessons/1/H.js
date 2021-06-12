@@ -25,37 +25,46 @@
 
 // import { input, output } from '../../input-output.js';
 
+// https://contest.yandex.ru/contest/27393/problems/H/
+
 function inputProcessing(lines) {
-  const [N, K, M] = lines[0].split(' ').map(Number);
+  const getMinTimeGeneral = (timeOnStation, timeInWay, n) =>
+    timeInWay * (n - 2) + timeOnStation * (n - 1) + timeOnStation * 2;
+  const getMaxTimeGeneral = (timeOnStation, timeInWay, n) =>
+    timeInWay * n + timeOnStation * (n - 1) + timeOnStation * 2;
 
-  if (K < M) {
-    return 0;
+  const TIME_TRAIN_AT_STATION = 1;
+  // const getMinTime = (timeInWay, n) => getMinTimeGeneral(timeTrainAtStation, timeInWay, n);
+  const getMinTime = getMinTimeGeneral.bind(null, TIME_TRAIN_AT_STATION);
+  const getMaxTime = getMaxTimeGeneral.bind(null, TIME_TRAIN_AT_STATION);
+
+  const [
+    interval1, // a — интервал между поездами на первом пути.
+    interval2, // b — интервал между поездами на втором пути.
+    n1, //  n — количество поездов на первом пути, которые увидела Таня.
+    n2, //  m — количество поездов на втором пути, которые увидела Таня
+  ] = lines.map(Number);
+
+  // [1, intervalTrainWay1, 1, intervalTrainWay1, ...]
+  // [1, intervalTrainWay2, 1, intervalTrainWay2, ...]
+  console.log((interval1 + 1) * (n1 - 1) + 1 + 2 * interval1);
+  const [min1, max1] = [getMinTime(interval1, n1), getMaxTime(interval1, n1)];
+  const [min2, max2] = [getMinTime(interval2, n2), getMaxTime(interval2, n2)];
+  console.log({ 1: [min1, max1], 2: [min2, max2] });
+  if (min1 >= max2 || min2 >= max1) {
+    return -1;
   }
-
-  let tailFromParts = 0;
-  let sum = N;
-  let partsRes = 0;
-
-  while (sum >= K) {
-    const blanksCount = Math.floor(sum / K);
-    sum -= blanksCount * K;
-
-    const partsCount = Math.floor(K / M) * blanksCount;
-    partsRes += partsCount;
-    tailFromParts = (K % M) * blanksCount;
-    sum += tailFromParts;
-  }
-
-  return String(partsRes);
+  return [Math.max(min1, min2), Math.min(max1, max2)];
 }
 
 (async () => {
   // const inputLines = await input(1);
-  const inputLines = ['30 5 7'];
+  const inputLines = [3, 2, 7, 11];
+  // const inputLines = [1, 5, 1, 2]; -1
   console.log({ inputLines });
   const outputLines = inputProcessing(inputLines);
   console.log({ outputLines });
+  console.log({ EXPECT: ['?'] });
   // output(outputLines);
 })();
-
 export default inputProcessing;
