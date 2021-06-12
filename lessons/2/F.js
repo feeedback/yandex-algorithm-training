@@ -17,14 +17,14 @@
 // Выведите сначала число M — минимальное количество элементов, которое надо дописать к последовательности,
 // а потом M чисел(каждое — от 1 до 9) — числа, которые надо дописать к последовательности.
 
-function isPalindrome(str) {
-  for (let i = 0; i < str.length / 2; i++) {
-    if (str[i] !== str[str.length - i - 1]) {
-      return false;
-    }
-  }
-  return true;
-}
+// function isPalindrome(str) {
+//   for (let i = 0; i < str.length / 2; i++) {
+//     if (str[i] !== str[str.length - i - 1]) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
 
 function inputProcessing(lines) {
   // const n = Number(lines[0]); // (1 ≤ N ≤ 100)
@@ -39,20 +39,41 @@ function inputProcessing(lines) {
   // }
   let index = 0;
   for (let i = 0; i < list.length; i++) {
+    console.log('i', i, 'list[i]', list[i], 'listReverse[index]', listReverse[index]);
+
     if (list[i] === listReverse[index]) {
-      index += 1;
+      let isPalindrome = true;
+
+      for (let j = i; j < list.length; j++) {
+        console.log({ i, j });
+        console.log({ l: list[j], r: listReverse[j - i] });
+        if (list[j] !== listReverse[j - i]) {
+          isPalindrome = false;
+          break;
+        }
+      }
+      console.log({ isPalindrome });
+
+      if (!isPalindrome) {
+        // return [...stack].reverse();
+        index = 0;
+        stack.push(list[i]);
+      } else {
+        break;
+      }
     } else {
-      console.log({ i, push: list[i] });
       stack.push(list[i]);
+      console.log({ i, stack });
     }
   }
   console.log({ stack });
   return [...stack].reverse();
 }
-
+//  [ 1--, 2, 1, 2, 2 ]  [ 2, 2, 1, 2, 1 ]
 (async () => {
   // const inputLines = await input(1);
-  const inputLines = ['', '1 2 1 2 2'];
+  const inputLines = ['', '1 2 1 2 2']; // 1 2 1
+  // const inputLines = ['', '1 2'];
   // const inputLines = [9, '1 2 3 4 5 4 3 2 1'];
   console.log({ inputLines });
 

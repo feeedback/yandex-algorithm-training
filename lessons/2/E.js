@@ -39,20 +39,32 @@ function inputProcessing(lines) {
   // 5 - 6
   // 1 - 7
   const scores = [...list].sort((a, b) => b - a);
-  const mapIndexToPlaces = list.reduce((acc, score, i) => ({ ...acc, [i]: scores.indexOf(score) + 1 }), {});
+  const mapIndexToPlaces = {};
+  const winners = [];
 
-  console.log({ scores });
-  console.log({ mapIndexToPlaces });
+  for (const [index, score] of Object.entries(list)) {
+    const place = scores.indexOf(score) + 1;
+    mapIndexToPlaces[index] = place;
 
+    if (place <= 3) {
+      winners.push(Number(index));
+    }
+  }
+  const minWinnerIndex = Math.min(...winners);
   let maxPlace = 0;
 
   for (let i = 1; i < list.length - 1; i++) {
     const current = list[i];
-    if (current % 5 === 0 && current % 2 !== 0 && mapIndexToPlaces[[i - 1]] <= 3 && current > list[i + 1]) {
-      console.log(i);
-      if (mapIndexToPlaces[i] > maxPlace) {
-        maxPlace = mapIndexToPlaces[i];
-      }
+    const place = mapIndexToPlaces[i];
+
+    if (
+      current % 5 === 0 &&
+      current % 2 !== 0 &&
+      minWinnerIndex < i &&
+      current > list[i + 1] &&
+      place > maxPlace
+    ) {
+      maxPlace = place;
     }
   }
   return maxPlace;
