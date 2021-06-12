@@ -88,5 +88,5 @@ function inputProcessing(lines) {
   console.log({ outputLines });
   // output(outputLines);
 })();
+
 export default inputProcessing;
-// 2) Победитель чемпионата метал лепешку раньше чем Василий (не обязательно предыдущим)
