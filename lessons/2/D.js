@@ -28,7 +28,6 @@ function inputProcessing(lines) {
   // const n = Number(lines[0]); // (3 ≤ n ≤ 105).
   const list = lines[1].split(' ').map(Number);
 
-  const place = 0;
   // Будем считать, что участник соревнования занял k - е место,
   // если ровно(k − 1) участников чемпионата метнули лепешку строго дальше, чем он.
   // 30 - 1
@@ -38,29 +37,36 @@ function inputProcessing(lines) {
   // 10 - 4
   // 5 - 6
   // 1 - 7
-  const scores = [...new Set(list)].sort((a, b) => b - a);
-  const mapScoresToPlaces = scores.reduce((acc, score, i) => ({ ...acc, [score]: i + 1 }), {});
+  const scores = [...list].sort((a, b) => b - a);
+  // const mapIndexToPlaces = scores.map();
+  // const mapIndexToPlaces = scores.reduce((acc, score, i) => ({ ...acc, [i]: i + 1 }), {});
+  const mapIndexToPlaces = list.reduce((acc, score, i) => ({ ...acc, [i]: scores.indexOf(score) + 1 }), {});
 
   console.log({ scores });
-  console.log({ mapScoresToPlaces });
+  console.log({ mapIndexToPlaces });
+
+  let maxPlace = 0;
 
   for (let i = 1; i < list.length - 1; i++) {
     const current = list[i];
-    if (current % 5 === 0 && mapScoresToPlaces[list[i - 1]] <= 3 && current > list[i + 1]) {
+    if (current % 5 === 0 && mapIndexToPlaces[[i - 1]] <= 3 && current > list[i + 1]) {
       console.log('vitalya', i, 'res:', current);
-      console.log('place', mapScoresToPlaces[current]);
+      console.log('place', mapIndexToPlaces[i]);
+      if (mapIndexToPlaces[i] > maxPlace) {
+        maxPlace = mapIndexToPlaces[i];
+      }
     }
 
     // if (list[i - 1] < list[i] && list[i] > list[i + 1]) {
     //   count += 1;
     // }
   }
-  return place;
+  return maxPlace;
 }
 
 (async () => {
   // const inputLines = await input(1);
-  const inputLines = [7, '10 20 15 10 30 5 1'];
+  const inputLines = [3, '10 15 20'];
   console.log({ inputLines });
 
   const outputLines = inputProcessing(inputLines);
