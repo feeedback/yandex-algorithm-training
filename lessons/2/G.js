@@ -15,25 +15,28 @@
 function inputProcessing(lines) {
   const list = lines[0].split(' ').map(Number);
 
-  let max1 = Number.NEGATIVE_INFINITY;
-  let max2 = Number.NEGATIVE_INFINITY;
-  let min1 = Number.POSITIVE_INFINITY;
-  let min2 = Number.POSITIVE_INFINITY;
+  let max1 = Math.min(list[0], list[1]);
+  let max2 = Math.max(list[0], list[1]);
+  let min1 = Math.max(list[0], list[1]);
+  let min2 = Math.min(list[0], list[1]);
 
-  for (const num of list) {
+  for (let i = 2; i < list.length; i++) {
+    const num = list[i];
+    // console.log({ i, num, max1, max2, min1, min2 });
+
     if (num > max2) {
       max1 = max2;
       max2 = num;
     } else if (num > max1) {
       max1 = num;
-    }
-    if (num < min2) {
+    } else if (num < min2) {
       min1 = min2;
       min2 = num;
     } else if (num < min1) {
       min1 = num;
     }
   }
+
   // console.log({ max1, max2, min1, min2 });
   const queryNums = max1 * max2 > min1 * min2 ? [max1, max2] : [min1, min2];
 
