@@ -15,13 +15,13 @@
 function inputProcessing(lines) {
   const list = lines[0].split(' ').map(Number);
 
-  // const seq = [list[0], list[1], list[2]].sort((a, b) => a - b);
+  // const seq = [list[0], list[1], list[2]].sort((a, b) => b - a);
   let [max3, max2, max1] = new Array(3).fill(Number.NEGATIVE_INFINITY);
   let [min1, min2, min3] = new Array(3).fill(Number.POSITIVE_INFINITY);
 
   for (let i = 0; i < list.length; i++) {
     const num = list[i];
-    console.log({ i, num, max1, max2, max3, min1, min2, min3 });
+    // console.log({ i, num, max1, max2, max3, min1, min2, min3 });
 
     if (num >= max3) {
       max1 = max2;
@@ -30,7 +30,20 @@ function inputProcessing(lines) {
     } else if (num >= max2) {
       max1 = max2;
       max2 = num;
-    } else if (num > max1) {
+    } else if (num >= max1) {
+      if (Number.isFinite(max1)) {
+        if (max1 <= min3) {
+          min1 = min2;
+          min2 = min3;
+          min3 = max1;
+        } else if (max1 <= min2) {
+          min1 = min2;
+          min2 = max1;
+        } else if (max1 < min1) {
+          min1 = max1;
+        }
+      }
+
       max1 = num;
     }
     //
@@ -46,7 +59,7 @@ function inputProcessing(lines) {
     }
   }
   const nums = [max1, max2, max3, min1, min2, min3];
-  console.log({ max1, max2, max3, min1, min2, min3 });
+  // console.log({ max1, max2, max3, min1, min2, min3 });
   let maxProduct = Number.NEGATIVE_INFINITY;
   let queryNums = [];
 
@@ -78,7 +91,7 @@ function inputProcessing(lines) {
 }
 
 (async () => {
-  const inputLines = ['-2 2 1 0 3 -2'];
+  const inputLines = ['1 2 1 -2 -1 1'];
   console.log({ inputLines });
 
   const outputLines = inputProcessing(inputLines);
