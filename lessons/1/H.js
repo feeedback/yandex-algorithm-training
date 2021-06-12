@@ -28,10 +28,11 @@
 // https://contest.yandex.ru/contest/27393/problems/H/
 
 function inputProcessing(lines) {
-  const getMinTimeGeneral = (timeOnStation, timeInWay, n) =>
-    timeInWay * (n - 2) + timeOnStation * (n - 1) + timeOnStation * 2;
+  const getMinTimeGeneral = (timeOnStation, timeInWay, n) => timeOnStation * n + timeInWay * (n - 1);
   const getMaxTimeGeneral = (timeOnStation, timeInWay, n) =>
-    timeInWay * n + timeOnStation * (n - 1) + timeOnStation * 2;
+    getMinTimeGeneral(timeOnStation, timeInWay, n) + timeInWay * 2;
+  // const getMaxTimeGeneral = (timeOnStation, timeInWay, n) =>
+  //   timeOnStation * n + timeInWay * (n - 1) + timeInWay * 2;
 
   const TIME_TRAIN_AT_STATION = 1;
   // const getMinTime = (timeInWay, n) => getMinTimeGeneral(timeTrainAtStation, timeInWay, n);
@@ -47,11 +48,10 @@ function inputProcessing(lines) {
 
   // [1, intervalTrainWay1, 1, intervalTrainWay1, ...]
   // [1, intervalTrainWay2, 1, intervalTrainWay2, ...]
-  console.log((interval1 + 1) * (n1 - 1) + 1 + 2 * interval1);
   const [min1, max1] = [getMinTime(interval1, n1), getMaxTime(interval1, n1)];
   const [min2, max2] = [getMinTime(interval2, n2), getMaxTime(interval2, n2)];
   console.log({ 1: [min1, max1], 2: [min2, max2] });
-  if (min1 >= max2 || min2 >= max1) {
+  if (min1 > max2 || min2 > max1) {
     return -1;
   }
   return [Math.max(min1, min2), Math.min(max1, max2)];
