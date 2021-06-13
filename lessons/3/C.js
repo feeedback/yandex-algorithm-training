@@ -21,21 +21,15 @@
 //   и отсортированные по возрастанию номера остальных цветов у Бори.
 
 function inputProcessing(lines) {
-  // const [N, M] = lines[0].split(' ').map(Number);
+  // eslint-disable-next-line no-unused-vars
+  const [N, M] = lines[0].split(' ').map(Number);
+  const set1 = new Set(lines.slice(1, N + 1).map(Number));
+  const set2 = new Set(lines.slice(1 + N).map(Number));
 
-  // console.log('lines.slice(1 + N, -M) :>> ', lines.slice(1 + N));
-  const set1 = new Set(new Array(1000000).fill(0).map(() => ~~(Math.random() * 1000000)));
-  const set2 = new Set(new Array(1000000).fill(0).map(() => ~~(Math.random() * 1000000)));
-
-  // const set2 = new Set(lines.slice(1 + N).map(Number));
-  // const set1 = new Set(lines.slice(1, N + 1).map(Number));
-  // const set2 = new Set(lines.slice(1 + N).map(Number));
-  // console.log({ N, M, set1, set2 });
-  // console.log({ set1, set2 });
   const intersection = [];
   const tail1 = [];
   const tail2 = [];
-  console.time('alog');
+
   for (const num of set1) {
     if (set2.has(num)) {
       intersection.push(num);
@@ -48,15 +42,14 @@ function inputProcessing(lines) {
       tail2.push(num);
     }
   }
-  console.timeEnd('alog');
-  // console.log({ intersection, tail1, tail2 });
+
   return [
     intersection.length,
-    // intersection.sort((a, b) => a - b),
+    intersection.sort((a, b) => a - b).join(' '),
     tail1.length,
-    // tail1.sort((a, b) => a - b),
+    tail1.sort((a, b) => a - b).join(' '),
     tail2.length,
-    // tail2.sort((a, b) => a - b),
+    tail2.sort((a, b) => a - b).join(' '),
   ];
 }
 
