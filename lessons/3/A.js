@@ -8,7 +8,6 @@
 // Формат вывода
 // Выведите ответ на задачу.
 
-
 function inputProcessing(lines) {
   const list = lines[0].split(' ').map(Number);
 
