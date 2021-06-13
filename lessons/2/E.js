@@ -48,13 +48,13 @@ function inputProcessing(lines) {
   }
 
   const mapIndexToPlaces = {};
-  let winnerIndex = null;
+  let winnerIndex = Number.POSITIVE_INFINITY;
 
   for (const [index, score] of Object.entries(list)) {
     const place = mapScoreToPlace[score] + 1;
     mapIndexToPlaces[index] = place;
 
-    if (winnerIndex === null && place === 1) {
+    if (place === 1 && Number(index) < winnerIndex) {
       winnerIndex = Number(index);
     }
   }
