@@ -13,17 +13,51 @@
 // школьник, на следующих строках - список таких языков.
 
 function inputProcessing(lines) {
-  const [, ...birdsXYRaw] = lines;
-  // const N = Number(NRaw); // N (1 ≤ N ≤ 1000)
+  // eslint-disable-next-line no-unused-vars
+  const N = Number(lines[0]); // школьники
 
-  const birdsXY = birdsXYRaw.map((xy) => xy.split(' ').map(Number));
+  const studentsLanguages = [];
 
-  return new Set(birdsXY.map(([x]) => x)).size;
+  for (let i = 1; i < lines.length; i++) {
+    const M = Number(lines[i]);
+
+    if (Number.isInteger(M)) {
+      studentsLanguages.push(lines.slice(i + 1, i + 1 + M));
+    }
+  }
+  console.log({ studentsLanguages });
+
+  const allLanguagesFlat = studentsLanguages.flat();
+  // const uniqLanguages = new Set(allLanguagesFlat);
+  const mapLanguageToCount = {};
+  const atLeastOneStudentLang = [];
+  const everyStudentLang = [];
+
+  for (const lang of allLanguagesFlat) {
+    if (!mapLanguageToCount[lang]) {
+      mapLanguageToCount[lang] = 0;
+    }
+    mapLanguageToCount[lang] += 1;
+
+    if (mapLanguageToCount[lang] === 1) {
+      atLeastOneStudentLang.push(lang);
+    }
+    if (mapLanguageToCount[lang] === N) {
+      everyStudentLang.push(lang);
+    }
+  }
+  console.log({ mapLanguageToCount, atLeastOneStudentLang, everyStudentLang });
+
+  return [
+    everyStudentLang.length,
+    ...everyStudentLang,
+    atLeastOneStudentLang.length,
+    ...atLeastOneStudentLang,
+  ];
 }
 
 (async () => {
-  const inputLines = ['6', '1 1', '2 2', '3 3', '2 1', '3 2', '3 1'];
-  // const inputLines = [6, '1 1', '2 2', '3 3', '2 1', '3 2', '3 4'];
+  const inputLines = ['3', '3', 'Russian', 'English', 'Japanese', '2', 'Russian', 'English', '1', 'English'];
   console.log({ inputLines });
 
   const outputLines = inputProcessing(inputLines);
