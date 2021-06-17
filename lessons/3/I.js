@@ -13,7 +13,6 @@
 // школьник, на следующих строках - список таких языков.
 
 function inputProcessing(lines) {
-  // eslint-disable-next-line no-unused-vars
   const N = Number(lines[0]); // школьники
 
   const studentsLanguages = [];
@@ -25,28 +24,28 @@ function inputProcessing(lines) {
       studentsLanguages.push(lines.slice(i + 1, i + 1 + M));
     }
   }
-  console.log({ studentsLanguages });
 
-  const allLanguagesFlat = studentsLanguages.flat();
-  // const uniqLanguages = new Set(allLanguagesFlat);
   const mapLanguageToCount = {};
   const atLeastOneStudentLang = [];
   const everyStudentLang = [];
 
-  for (const lang of allLanguagesFlat) {
-    if (!mapLanguageToCount[lang]) {
-      mapLanguageToCount[lang] = 0;
-    }
-    mapLanguageToCount[lang] += 1;
+  for (const studentLangs of studentsLanguages) {
+    for (const lang of studentLangs) {
+      if (!mapLanguageToCount[lang]) {
+        mapLanguageToCount[lang] = 0;
+      }
+      mapLanguageToCount[lang] += 1;
 
-    if (mapLanguageToCount[lang] === 1) {
-      atLeastOneStudentLang.push(lang);
-    }
-    if (mapLanguageToCount[lang] === N) {
-      everyStudentLang.push(lang);
+      if (mapLanguageToCount[lang] === 1) {
+        atLeastOneStudentLang.push(lang);
+      }
+      if (mapLanguageToCount[lang] === N) {
+        everyStudentLang.push(lang);
+      }
     }
   }
-  console.log({ mapLanguageToCount, atLeastOneStudentLang, everyStudentLang });
+
+  // console.log({ mapLanguageToCount, atLeastOneStudentLang, everyStudentLang });
 
   return [
     everyStudentLang.length,
