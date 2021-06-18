@@ -16,25 +16,22 @@
 // Выведите одно целое число — максимальную высоту пирамиды.
 
 function inputProcessing(lines) {
-  const [N, ...blocksRaw] = lines;
+  const [, ...blocksRaw] = lines;
   const blocks = blocksRaw.map((widthAndHeight) => widthAndHeight.split(' ').map(Number));
-  // .sort(([widthA], [widthB]) => widthB - widthA);
 
   const mapWidthToBlocks = {};
-  const widthsUsed = new Set();
-  const widthsUsed = new Set();
+  let sumHeight = 0;
 
   for (const [width, height] of blocks) {
     if (!mapWidthToBlocks[width]) {
-      widthsUsed.add(width)
       mapWidthToBlocks[width] = height;
+      sumHeight += height;
     } else if (height > mapWidthToBlocks[width]) {
+      sumHeight += height - mapWidthToBlocks[width];
       mapWidthToBlocks[width] = height;
     }
   }
 
-  const sumHeight = Object.values(mapWidthToBlocks).reduce((sum, height) => sum + height, 0);
-  // console.log({ blocks, mapWidthToBlocks }, mapWidthToBlocks);
   return sumHeight;
 }
 
