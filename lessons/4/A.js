@@ -12,21 +12,14 @@
 
 // Эту задачу можно решить и без словарей (сохранив все входные данные в списке), но решение со
 // словарем будет более простым.
-import input from './input.js';
+// import input from './input.js';
 
 function inputProcessing(lines) {
   const word = lines.pop();
-  const [, ...synonymsRaw] = lines;
-  const synonyms = synonymsRaw.map((synonym) => synonym.split(' '));
-  // const synonymsReverse = synonyms.map(([wordA, wordB]) => [wordB, wordA]);
 
-  // const dict = new Map([...synonyms, ...synonymsReverse]);
-  // // console.log({ word, synonyms, dict });
-  // return dict.get(word);
-  // const dict = Object.fromEntries([...synonyms, ...synonymsReverse]);
-  // console.log({ word, synonyms, dict });
   let synonymWord = null;
-  for (const [wordA, wordB] of synonyms) {
+  for (const synonym of lines) {
+    const [wordA, wordB] = synonym.split(' ');
     if (word === wordA) {
       synonymWord = wordB;
     }
@@ -39,9 +32,9 @@ function inputProcessing(lines) {
 
 (async () => {
   // const inputLines = await input(1);
-  // const inputLines = ['3', 'Hello Hi', 'Bye Goodbye', 'List Array', 'Goodbye'];
-  const inputLines = input;
-  // console.log({ inputLines });
+  const inputLines = ['3', 'Hello Hi', 'Bye Goodbye', 'List Array', 'Goodbye'];
+  // const inputLines = input;
+  console.log({ inputLines });
   const outputLines = inputProcessing(inputLines);
   console.log({ outputLines });
   // output(outputLines);
