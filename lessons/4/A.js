@@ -18,22 +18,30 @@ function inputProcessing(lines) {
   const word = lines.pop();
   const [, ...synonymsRaw] = lines;
   const synonyms = synonymsRaw.map((synonym) => synonym.split(' '));
-  const synonymsReverse = synonyms.map(([wordA, wordB]) => [wordB, wordA]);
+  // const synonymsReverse = synonyms.map(([wordA, wordB]) => [wordB, wordA]);
 
   // const dict = new Map([...synonyms, ...synonymsReverse]);
   // // console.log({ word, synonyms, dict });
   // return dict.get(word);
-  const dict = Object.fromEntries([...synonyms, ...synonymsReverse]);
+  // const dict = Object.fromEntries([...synonyms, ...synonymsReverse]);
   // console.log({ word, synonyms, dict });
-  
-  return dict[word];
+  let synonymWord = null;
+  for (const [wordA, wordB] of synonyms) {
+    if (word === wordA) {
+      synonymWord = wordB;
+    }
+    if (word === wordB) {
+      synonymWord = wordA;
+    }
+  }
+  return synonymWord;
 }
 
 (async () => {
   // const inputLines = await input(1);
   // const inputLines = ['3', 'Hello Hi', 'Bye Goodbye', 'List Array', 'Goodbye'];
   const inputLines = input;
-  console.log({ inputLines });
+  // console.log({ inputLines });
   const outputLines = inputProcessing(inputLines);
   console.log({ outputLines });
   // output(outputLines);
