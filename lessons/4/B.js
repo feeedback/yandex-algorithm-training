@@ -16,14 +16,24 @@ import fs from 'fs';
 
 function inputProcessing() {
   const data = fs.readFileSync('input.txt', 'utf8');
-  // const list = data.split(/[\s\n]/).filter((word) => word !== '');
-  const list = data.match(/[^\s\n]+/g);
-  const mapWordToCount = {}
-for (const iterator of object) {
-  
-}
-  // console.log({ words });
-  return words.size;
+  const words = data.match(/[^\s\n]+/g);
+  const mapWordToCount = {};
+  const mapCountEarlier = [];
+
+  if (!words) {
+    return '';
+  }
+  for (const word of words) {
+    if (!mapWordToCount[word]) {
+      mapWordToCount[word] = 1;
+      mapCountEarlier.push(0);
+    } else {
+      mapCountEarlier.push(mapWordToCount[word]);
+      mapWordToCount[word] += 1;
+    }
+  }
+  // console.log({ words, mapWordToCount, mapCountEarlier });
+  return mapCountEarlier.join(' ');
 }
 
 process.stdout.write(String(inputProcessing()));
