@@ -28,32 +28,39 @@ function inputProcessing() {
 
   const mapCustomerToPurchases = {};
   const mapCustomerToPurchasesSet = {};
-  const customersSet = [];
+  const customersSet = new Set();
 
   for (const [customer, product, count] of purchasedItems) {
     if (!mapCustomerToPurchases[customer]) {
-      mapCustomerToPurchases[customer] = {};
-      customersSet.push(customer);
+      mapCustomerToPurchases[customer] = new Map();
+      customersSet.add(customer);
     }
-    if (!mapCustomerToPurchases[customer][product]) {
-      mapCustomerToPurchases[customer][product] = 0;
+
+    if (!mapCustomerToPurchases[customer].has(product)) {
+      mapCustomerToPurchases[customer].set(product, 0);
 
       if (!mapCustomerToPurchasesSet[customer]) {
-        mapCustomerToPurchasesSet[customer] = [];
+        mapCustomerToPurchasesSet[customer] = new Set();
       }
-      mapCustomerToPurchasesSet[customer].push(product);
+      mapCustomerToPurchasesSet[customer].add(product);
     }
-    mapCustomerToPurchases[customer][product] += Number(count);
+    mapCustomerToPurchases[customer].set(
+      product,
+      mapCustomerToPurchases[customer].get(product) + Number(count)
+    );
   }
-  customersSet.sort((a, b) => String(a).localeCompare(b));
+  const customersSetSorted = [...customersSet].sort((a, b) => String(a).localeCompare(b));
 
   const receipt = [];
-  for (const customer of customersSet) {
-    receipt.push(`${customer}:`);
-    mapCustomerToPurchasesSet[customer].sort((a, b) => String(a).localeCompare(b));
 
-    for (const product of mapCustomerToPurchasesSet[customer]) {
-      receipt.push([product, mapCustomerToPurchases[customer][product]].join(' '));
+  for (const customer of customersSetSorted) {
+    receipt.push(`${customer}:`);
+    const productsSetSorted = [...mapCustomerToPurchasesSet[customer]].sort((a, b) =>
+      String(a).localeCompare(b)
+    );
+
+    for (const product of productsSetSorted) {
+      receipt.push(`${product} ${mapCustomerToPurchases[customer].get(product)}`);
     }
   }
 
