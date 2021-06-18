@@ -19,12 +19,8 @@
 import fs from 'fs';
 // const fs = require('fs');
 
-function inputProcessing() {
-  const data = fs.readFileSync('input.txt', 'utf8');
-  const purchasedItems = data
-    .split('\n')
-    .map((purchase) => purchase.match(/[^\s\n]+/g))
-    .filter(Boolean);
+function inputProcessing(lines) {
+  const purchasedItems = lines.map((line) => line.split(' ')).filter(Boolean);
 
   const mapCustomerToPurchases = {};
   const mapCustomerToPurchasesSet = {};
@@ -63,8 +59,24 @@ function inputProcessing() {
       receipt.push(`${product} ${mapCustomerToPurchases[customer].get(product)}`);
     }
   }
-
-  return receipt;
+  for (const line of receipt) {
+    process.stdout.write(`${line}\n`);
+  }
 }
 
-process.stdout.write(inputProcessing().join('\n'));
+(async () => {
+  // const inputLines = await input(1);
+  // const inputLines = fs.readFileSync('input.txt', 'utf8').split('\r\n');
+  const inputLines = [
+    'Ivanov paper 10',
+    'Petrov pens 5',
+    'Ivanov marker 3',
+    'Ivanov paper 7',
+    'Petrov envelope 20',
+    'Ivanov envelope 5',
+  ];
+  // console.log({ inputLines });
+  const outputLines = inputProcessing(inputLines);
+  // console.log({ outputLines });
+  // output(outputLines);
+})();
