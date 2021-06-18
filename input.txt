@@ -1,1 +1,13 @@
-apple orange banana banana orange
+Ivanov aaa 1
+Petrov aaa 2
+Sidorov aaa 3
+Ivanov aaa 6
+Petrov aaa 7
+Sidorov aaa 8
+Ivanov bbb 3
+Petrov bbb 7
+Sidorov aaa 345
+Ivanov ccc 45
+Petrov ddd 34
+Ziborov eee 234
+Ivanov aaa 45
