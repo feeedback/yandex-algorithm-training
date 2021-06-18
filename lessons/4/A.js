@@ -30,6 +30,18 @@ function inputProcessing(lines) {
   return synonymWord;
 }
 
+function inputProcessingByMap(lines) {
+  const word = lines.pop();
+  const [, ...synonymsRaw] = lines;
+  const synonyms = synonymsRaw.map((synonym) => synonym.split(' '));
+  const synonymsReverse = synonyms.map(([wordA, wordB]) => [wordB, wordA]);
+
+  const dict = Object.fromEntries(synonyms);
+  const dictReverse = Object.fromEntries(synonymsReverse);
+
+  return dict[word] ?? dictReverse[word];
+}
+
 (async () => {
   // const inputLines = await input(1);
   const inputLines = ['3', 'Hello Hi', 'Bye Goodbye', 'List Array', 'Goodbye'];
@@ -40,4 +52,4 @@ function inputProcessing(lines) {
   // output(outputLines);
 })();
 
-export default inputProcessing;
+export default { inputProcessing, inputProcessingByMap };
