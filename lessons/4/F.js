@@ -23,44 +23,23 @@ function inputProcessing(lines) {
   const purchasedItems = lines.map((line) => line.split(' ')).filter(Boolean);
 
   const mapCustomerToPurchases = {};
-  const mapCustomerToPurchasesSet = {};
-  const customersSet = new Set();
 
   for (const [customer, product, count] of purchasedItems) {
     if (!mapCustomerToPurchases[customer]) {
-      mapCustomerToPurchases[customer] = new Map();
-      customersSet.add(customer);
+      mapCustomerToPurchases[customer] = {};
     }
-
-    if (!mapCustomerToPurchases[customer].has(product)) {
-      mapCustomerToPurchases[customer].set(product, 0);
-
-      if (!mapCustomerToPurchasesSet[customer]) {
-        mapCustomerToPurchasesSet[customer] = new Set();
-      }
-      mapCustomerToPurchasesSet[customer].add(product);
+    if (!mapCustomerToPurchases[customer][product]) {
+      mapCustomerToPurchases[customer][product] = 0;
     }
-    mapCustomerToPurchases[customer].set(
-      product,
-      mapCustomerToPurchases[customer].get(product) + Number(count)
-    );
+    mapCustomerToPurchases[customer][product] += Number(count);
   }
-  const customersSetSorted = [...customersSet].sort((a, b) => String(a).localeCompare(b));
 
-  const receipt = [];
+  for (const customer of Object.keys(mapCustomerToPurchases).sort((a, b) => a.localeCompare(b))) {
+    process.stdout.write(`${customer}:\n`);
 
-  for (const customer of customersSetSorted) {
-    receipt.push(`${customer}:`);
-    const productsSetSorted = [...mapCustomerToPurchasesSet[customer]].sort((a, b) =>
-      String(a).localeCompare(b)
-    );
-
-    for (const product of productsSetSorted) {
-      receipt.push(`${product} ${mapCustomerToPurchases[customer].get(product)}`);
+    for (const product of Object.keys(mapCustomerToPurchases[customer]).sort((a, b) => a.localeCompare(b))) {
+      process.stdout.write(`${product} ${mapCustomerToPurchases[customer][product]}\n`);
     }
-  }
-  for (const line of receipt) {
-    process.stdout.write(`${line}\n`);
   }
 }
 
