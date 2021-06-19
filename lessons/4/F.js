@@ -15,47 +15,71 @@
 // выведите двоеточие, затем выведите список названий всех приобретенных данным покупателем товаров
 // в лексикографическом порядке, после названия каждого товара выведите количество единиц товара,
 // приобретенных данным покупателем. Информация о каждом товаре выводится в отдельной строке.
-
 import fs from 'fs';
 // const fs = require('fs');
 
-function inputProcessing(lines) {
-  const purchasedItems = lines.map((line) => line.split(' ')).filter(Boolean);
+import readline from 'readline';
 
-  const mapCustomerToPurchases = {};
+// const getRamUsage = () =>
+//   Object.fromEntries(
+//     Object.entries(process.memoryUsage()).map(([key, used]) => [key, `${Math.round(used / 1024 / 1024)} MB`])
+//   );
 
-  for (const [customer, product, count] of purchasedItems) {
-    if (!mapCustomerToPurchases[customer]) {
-      mapCustomerToPurchases[customer] = {};
-    }
-    if (!mapCustomerToPurchases[customer][product]) {
-      mapCustomerToPurchases[customer][product] = 0;
-    }
-    mapCustomerToPurchases[customer][product] += Number(count);
+// const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+const rl = readline.createInterface({
+  input: fs.createReadStream('input.txt'),
+  output: process.stdout,
+});
+
+const customers = {};
+
+rl.on('line', (data) => {
+  const [customer, item, quantity] = data.split(' ');
+
+  if (!customers[customer]) {
+    customers[customer] = new Map();
+    customers[customer].set(item, +quantity);
+  } else if (!customers[customer].has(item)) {
+    customers[customer].set(item, +quantity);
+  } else {
+    customers[customer].set(item, customers[customer].get(item) + +quantity);
   }
+});
 
-  for (const customer of Object.keys(mapCustomerToPurchases).sort((a, b) => a.localeCompare(b))) {
-    process.stdout.write(`${customer}:\n`);
+let outputLines = [];
 
-    for (const product of Object.keys(mapCustomerToPurchases[customer]).sort((a, b) => a.localeCompare(b))) {
-      process.stdout.write(`${product} ${mapCustomerToPurchases[customer][product]}\n`);
-    }
-  }
-}
+rl.on('close', () => {
+  Object.keys(customers)
+    .sort()
+    .forEach((customer) => {
+      if (outputLines.length > 4000) {
+        process.stdout.write(`${outputLines.join('\n')}\n`);
 
-(async () => {
-  // const inputLines = await input(1);
-  // const inputLines = fs.readFileSync('input.txt', 'utf8').split('\r\n');
-  const inputLines = [
-    'Ivanov paper 10',
-    'Petrov pens 5',
-    'Ivanov marker 3',
-    'Ivanov paper 7',
-    'Petrov envelope 20',
-    'Ivanov envelope 5',
-  ];
-  // console.log({ inputLines });
-  const outputLines = inputProcessing(inputLines);
-  // console.log({ outputLines });
-  // output(outputLines);
-})();
+        outputLines = [];
+      }
+      outputLines.push(`${customer}:`);
+
+      [...customers[customer].keys()].sort().forEach((item) => {
+        outputLines.push(`${item} ${customers[customer].get(item)}`);
+      });
+    });
+  process.stdout.write(`${outputLines.join('\n')}\n`);
+  // console.log(getRamUsage());
+});
+
+// (async () => {
+//   // const inputLines = await input(1);
+//   // const inputLines = fs.readFileSync('input.txt', 'utf8').split('\r\n');
+//   const inputLines = [
+//     'Ivanov paper 10',
+//     'Petrov pens 5',
+//     'Ivanov marker 3',
+//     'Ivanov paper 7',
+//     'Petrov envelope 20',
+//     'Ivanov envelope 5',
+//   ];
+//   // console.log({ inputLines });
+//   // const outputLines = inputProcessing(inputLines);
+//   // console.log({ outputLines });
+//   // output(outputLines);
+// })();
