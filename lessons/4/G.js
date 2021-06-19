@@ -1,5 +1,3 @@
-/* eslint-disable default-case */
-/* eslint-disable guard-for-in */
 // https://contest.yandex.ru/contest/27665/problems/G
 
 // Вам необходимо реализовать такую систему. Клиенты банка идентифицируются именами (уникальная
@@ -39,6 +37,7 @@ const IsNoExistCreateBankCard = (client) => {
     createBankCard(client);
   }
 };
+
 const mapOperationToFn = {
   DEPOSIT: (client, money) => {
     IsNoExistCreateBankCard(client);
