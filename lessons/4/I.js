@@ -28,39 +28,39 @@
 // Формат вывода
 // Выведите количество ошибок в Петином тексте, которые найдет Вася.
 
-import assert from 'assert';
-import fs from 'fs';
-import readline from 'readline';
+// import fs from 'fs';
+// import readline from 'readline';
 
-const rl = readline.createInterface({
-  input: fs.createReadStream('input.txt'),
-  output: process.stdout,
-});
-const inputLines = [];
+// const rl = readline.createInterface({
+//   input: fs.createReadStream('input.txt'),
+//   output: process.stdout,
+// });
+// const inputLines = [];
 
-rl.on('line', (data) => {
-  inputLines.push(data.toString().trim());
-});
+// rl.on('line', (data) => {
+//   inputLines.push(data.toString().trim());
+// });
 
-rl.on('close', () => {
-  // console.log({ inputLines });
-  const outputLines = inputProcessing(inputLines);
-  console.log({ outputLines });
-});
+// rl.on('close', () => {
+//   console.log({ inputLines });
+//   const outputLines = inputProcessing(inputLines);
+//   console.log({ outputLines });
+// });
 
 function inputProcessing(lines) {
   const wordCountInDict = Number(lines[0]); // (0≤N≤20000)
   const strWords = lines[lines.length - 1].split(' '); // строка <=300000 символов
-  const dict = new Set(lines.slice(1, 1 + wordCountInDict)); // слово <= 30 символов
-  // console.log({ wordCountInDict, strWords, dict });
+  if (strWords[0] === '') {
+    return 0;
+  }
+  const dictWithStress = new Set(lines.slice(1, 1 + wordCountInDict)); // слово <= 30 символов
+  const dict = new Set(lines.slice(1, 1 + wordCountInDict).map((word) => word.toLowerCase())); // слово <= 30 символов
 
   let errors = 0;
   for (const word of strWords) {
-    // const stressPositionIndex = word.search(/[A-Z]/);
-    // const stressCount = [...word.matchAll(/[A-Z]/g)].length;
     const stressCount = (word.match(/[A-Z]/g) || []).length;
 
-    if (!dict.has(word) && stressCount !== 1) {
+    if (!dict.has(word.toLowerCase()) ? stressCount !== 1 : !dictWithStress.has(word)) {
       errors += 1;
     }
   }
