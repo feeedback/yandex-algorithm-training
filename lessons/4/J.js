@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 // https://contest.yandex.ru/contest/27665/problems/J
 
 // Поскольку в разных языках используются различные ключевые слова, то список ключевых слов в
@@ -31,26 +32,25 @@
 // язык во входных данных не чувствителен к регистру, то можно выводить идентификатор в любом
 // регистре.
 
-import fs from 'fs';
-import readline from 'readline';
+// import fs from 'fs';
+// import readline from 'readline';
 
-const rl = readline.createInterface({
-  input: fs.createReadStream('input.txt'),
-  output: process.stdout,
-});
-const inputLines = [];
+// const rl = readline.createInterface({
+//   input: fs.createReadStream('input.txt'),
+//   output: process.stdout,
+// });
+// const inputLines = [];
 
-rl.on('line', (data) => {
-  inputLines.push(data.toString().trim());
-});
+// rl.on('line', (data) => {
+//   inputLines.push(data.toString().trim());
+// });
 
-rl.on('close', () => {
-  console.log({ inputLines });
-  const outputLines = inputProcessing(inputLines);
-  console.log({ outputLines });
-});
-// aSCII 32-162
-// // [\x20-\x7E]
+// rl.on('close', () => {
+//   console.log({ inputLines });
+//   const outputLines = inputProcessing(inputLines);
+//   console.log({ outputLines });
+// });
+
 function inputProcessing(lines) {
   const lineFirst = lines[0].split(' ');
 
@@ -61,39 +61,45 @@ function inputProcessing(lines) {
   const dictKeyWords = new Set(lines.slice(1, 1 + N)); // слово <= 50 символов
   const dictKeyWordsAll = new Set(lines.slice(1, 1 + N).map((wordKey) => wordKey.toLowerCase())); // слово <= 50 символов
 
-  const code = lines
-    .slice(1 + N)
-    // .flatMap((str) => str.split(/\W/))
-    .flatMap((str) => str.match(/\w+/g))
-    .filter((word) => {
-      if (!word) {
-        return false;
+  const code = lines.slice(1 + N).flatMap((str) => str.match(/\w+/g)); // строки <=10kB
+
+  const mapVariablesToCount = new Map();
+  let countMax = 0;
+  const variables = [];
+
+  for (const word of code) {
+    if (!word) {
+      continue;
+    }
+    if (
+      /\D/.test(word) &&
+      (isCaseSensitive ? !dictKeyWords.has(word) : !dictKeyWordsAll.has(word.toLowerCase())) &&
+      (isCanStartFromDigit || /^\D.*/.test(word))
+    ) {
+      const variable = isCaseSensitive ? word : word.toLowerCase();
+      variables.push(variable);
+
+      if (!mapVariablesToCount.has(variable)) {
+        mapVariablesToCount.set(variable, 1);
+        if (countMax === 0) {
+          countMax = 1;
+        }
+      } else {
+        const beforeCount = mapVariablesToCount.get(variable);
+        mapVariablesToCount.set(variable, beforeCount + 1);
+
+        if (beforeCount + 1 > countMax) {
+          countMax = beforeCount + 1;
+        }
       }
-      if (
-        /\D/.test(word) &&
-        (isCaseSensitive ? !dictKeyWords.has(word) : !dictKeyWordsAll.has(word.toLowerCase())) &&
-        (isCanStartFromDigit || /^\D.*/.test(word))
-      ) {
-        return true;
-      }
-    }); // строки <=10kB
-  // Все последовательности из латинских букв, цифр и знаков подчеркивания, которые не являются
-  // ключевыми словами и содержат хотя бы один символ, не являющийся цифрой, могут быть
-  // идентификаторами.
+    }
+  }
 
-  // const dictWithStress = new Set(lines.slice(1, 1 + wordCountInDict)); // слово <= 30 символов
-  // const dict = new Set(lines.slice(1, 1 + wordCountInDict).map((word) => word.toLowerCase())); // слово <= 30 символов
+  const [[variableMax]] = [...mapVariablesToCount.entries()]
+    .filter(([, count]) => count === countMax)
+    .sort((a, b) => variables.indexOf(a) - variables.indexOf(b));
 
-  // let errors = 0;
-  // for (const word of strWords) {
-  //   const stressCount = (word.match(/[A-Z]/g) || []).length;
-
-  //   if (!dict.has(word.toLowerCase()) ? stressCount !== 1 : !dictWithStress.has(word)) {
-  //     errors += 1;
-  //   }
-  // }
-  console.log({ N, isCaseSensitive, isCanStartFromDigit, dictKeyWords }, code);
-  // return errors;
+  return variableMax;
 }
 
 // (async () => {
