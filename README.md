@@ -1,12 +1,12 @@
 # Тренировки по алгоритмам от Яндекса
 
-#### Июнь 2021 https://yandex.ru/yaintern/algorithm-training
+### Июнь 2021 https://yandex.ru/yaintern/algorithm-training
 
 - 8 лекций с домашними заданиями на платформе Яндекс.Контест и ответы на ваши вопросы;
 - 20 задач в неделю (домашних заданий)
 - 4 видеотрансляции с проверкой домашних заданий, разбором решений и популярных ошибок.
 
-##### Содержание
+### Содержание
 
 1. "Сложность, тестирование, особые случаи" [лекция](https://www.youtube.com/watch?v=QLhqYNsPIVo) | [контест](https://contest.yandex.ru/contest/27393/problems/) | [решение задач](lessons_1/)
 2. "Линейный поиск" [лекция](https://www.youtube.com/watch?v=SKwB41FrGgU) | [контест](https://contest.yandex.ru/contest/27472/problems/) | [решение задач](lessons_2/)
