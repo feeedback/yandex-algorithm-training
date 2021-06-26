@@ -11,7 +11,7 @@
 // Формат вывода
 // Выведите одно число — количество деталей, которое может получиться по такой технологии.
 
-// import { input, output } from '../../input-output.js';
+// import { input, output } from '../input-output.js';
 
 function inputProcessing(lines) {
   const [N, K, M] = lines[0].split(' ').map(Number);

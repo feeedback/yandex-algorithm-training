@@ -21,7 +21,7 @@
 // Формат вывода
 // Выходной файл должен содержать одно целое число — температуру, которая установится в комнате через час.
 
-import { input, output } from '../../input-output.js';
+import { input, output } from '../input-output.js';
 
 function inputProcessing(lines) {
   const [temp, mode] = lines;

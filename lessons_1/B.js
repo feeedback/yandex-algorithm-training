@@ -10,7 +10,7 @@
 // Формат вывода
 // Выведите ответ на задачу.
 
-import { input, output } from '../../input-output.js';
+import { input, output } from '../input-output.js';
 
 function inputProcessing(lines) {
   const [a, b, c] = lines.map(Number);

@@ -6,7 +6,7 @@
 // Формат вывода
 // Для каждого телефонного номера в адресной книге выведите YES (заглавными буквами), если он совпадает с тем телефонным номером, который Вася хочет добавить в адресную книгу или NO (заглавными буквами) в противном случае.
 
-import { input, output } from '../../input-output.js';
+import { input, output } from '../input-output.js';
 
 function inputProcessing(lines) {
   const [basePhone, ...phones] = lines.map((phonesRaw) =>

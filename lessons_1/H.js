@@ -23,7 +23,7 @@
 // Программа должна вывести два числа: минимальное и максимальное время в минутах,
 // которое Таня могла стоять на платформе, или одно число - 1, если Таня точно ошиблась.
 
-// import { input, output } from '../../input-output.js';
+// import { input, output } from '../input-output.js';
 
 // https://contest.yandex.ru/contest/27393/problems/H/
 
