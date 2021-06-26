@@ -22,7 +22,7 @@ export const input = async (INPUT_LINE_COUNT = 1) => {
   do {
     try {
       const data = await promisedReadline();
-      inputLines.push(data.toString());
+      inputLines.push(data.toString().trim());
     } catch (error) {
       console.log(error);
       console.log(`Received ${inputLines.length} just lines. Expected ${INPUT_LINE_COUNT}`);
