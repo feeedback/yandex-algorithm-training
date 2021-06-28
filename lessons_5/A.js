@@ -20,63 +20,52 @@
 // Выведите пару неотрицательных чисел — цвет майки и цвет штанов, которые следует выбрать Глебу.
 // Если вариантов выбора несколько, выведите любой из них.
 
-import fs from 'fs';
+// import fs from 'fs';
 
 function inputProcessing(lines) {
   const N = Number(lines[0]);
   const M = Number(lines[2]);
+  const listN = lines[1].split(' ').map(Number);
+  const listM = lines[3].split(' ').map(Number);
 
-  const list1 = lines[1].split(' ').map(Number);
-  const list2 = lines[3].split(' ').map(Number);
+  let indexN = 0;
+  let indexM = 0;
 
-  const list1Start = list1[0];
-  const list2Start = list2[0];
-  console.log({ N, M, list1Start, list2Start });
+  let minIndexN = 0;
+  let minIndexM = 0;
+  let minDiff = Infinity;
 
-  if (list1Start > list2Start) {
-    const diff = list1Start - list2Start;
+  while (indexN < N && indexM < M) {
+    const [elemN, elemM] = [listN[indexN], listM[indexM]];
 
-    return [list1Start, list2[Math.min(diff, M - 1)]];
+    if (elemN === elemM) {
+      [minIndexN, minIndexM] = [indexN, indexM];
+      break;
+    }
+
+    const diff = Math.abs(elemN - elemM);
+
+    if (diff < minDiff) {
+      minDiff = diff;
+      [minIndexN, minIndexM] = [indexN, indexM];
+    }
+
+    if (elemN < elemM) indexN += 1;
+    else indexM += 1;
   }
 
-  if (list1Start < list2Start) {
-    const diff = list2Start - list1Start;
-
-    return [list1[Math.min(diff, N - 1)], list2Start];
-  }
-
-  return [list1Start, list2Start];
+  return [listN[minIndexN], listM[minIndexM]].join(' ');
 }
 
-// function inputProcessing(lines) {
-//   const N = Number(lines[0]);
-//   const M = Number(lines[2]);
-
-//   const list1 = lines[1].split(' ');
-//   const list2 = lines[3].split(' ');
-
-//   const list1Start = Number(list1[0]);
-//   const list2Start = Number(list2[0]);
-
-//   const max = list1Start > list2Start ? list1Start : list2Start;
-//   const minArr = list1Start <= list2Start ? list1 : list2;
-//   const minN = list1Start <= list2Start ? N : M;
-
-//   const diff = Math.abs(list1Start - list2Start);
-//   const secondNumber = minArr[Math.min(diff, minN - 1)];
-
-//   return [max, Number(secondNumber)];
-// }
-
-(async () => {
-  // const inputLines = await input(1);
-  const inputLines = fs.readFileSync('input.txt', 'utf8').split('\r\n');
-  // const inputLines = ['3', 'Hello Hi', 'Bye Goodbye', 'List Array', 'Goodbye'];
-  // const inputLines = input;
-  console.log({ inputLines });
-  const outputLines = inputProcessing(inputLines);
-  console.log({ outputLines });
-  // output(outputLines);
-})();
+// (async () => {
+//   // const inputLines = await input(1);
+//   const inputLines = fs.readFileSync('input.txt', 'utf8').split('\r\n');
+//   // const inputLines = ['3', 'Hello Hi', 'Bye Goodbye', 'List Array', 'Goodbye'];
+//   // const inputLines = input;
+//   console.log({ inputLines });
+//   const outputLines = inputProcessing(inputLines);
+//   console.log({ outputLines });
+//   // output(outputLines);
+// })();
 
 export default inputProcessing;
