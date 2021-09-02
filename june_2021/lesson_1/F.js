@@ -8,7 +8,7 @@
 // Формат вывода
 // Выведите два числа — размеры стола. Если возможно несколько ответов, выведите любой из них (но только один).
 
-// import { input, output } from '../input-output.js';
+// import { input, output } from '../../input-output_dev.js';
 
 function inputProcessing(lines) {
   const [x1, y1, x2, y2] = lines[0].split(' ').map(Number);

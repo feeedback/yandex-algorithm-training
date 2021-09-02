@@ -7,10 +7,15 @@ const rl = readline.createInterface({ input: process.stdin, output: process.stdo
 const inputLines = [];
 
 rl.on('line', (data) => {
-  inputLines.push(data.toString().trim());
+  const dataStr = data.toString().trim();
+  // if (dataStr !== '') {
+  inputLines.push(dataStr);
+  // }
 });
 
 rl.on('close', () => {
   const outputLines = inputProcessing(inputLines);
   process.stdout.write(Array.isArray(outputLines) ? outputLines.join('\n') : String(outputLines));
 });
+
+// PASTE TO THIS LINE definition function inputProcessing

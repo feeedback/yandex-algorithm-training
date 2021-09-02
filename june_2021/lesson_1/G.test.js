@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals';
-import fn from '../../lessons_1/G.js';
+import fn from './G.js';
 
 test('1', () => {
   expect(fn(['10 5 2'])).toStrictEqual('4');

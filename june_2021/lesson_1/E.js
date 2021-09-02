@@ -10,7 +10,7 @@
 // Формат вывода
 // Выведите два числа P1 и N1. Если входные данные не позволяют однозначно определить P1 или N1, вместо соответствующего числа напечатайте 0. Если входные данные противоречивы, напечатайте два числа –1 (минус один).
 
-// import { input, output } from '../input-output.js';
+// import { input, output } from '../../input-output_dev.js';
 
 function inputProcessing(lines) {
   const getPodezd = (floorRaw, floorMax) => Math.ceil(floorRaw / floorMax);

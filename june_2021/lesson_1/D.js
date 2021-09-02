@@ -7,7 +7,7 @@
 // Формат вывода
 // Программа должна вывести все решения уравнения в порядке возрастания, либо NO SOLUTION (заглавными буквами), если решений нет. Если решений бесконечно много, вывести MANY SOLUTIONS.
 
-import { input, output } from '../input-output.js';
+import { input, output } from '../../input-output_dev.js';
 
 function inputProcessing(lines) {
   const zeroRoot = 'NO SOLUTION';
