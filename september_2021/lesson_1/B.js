@@ -1,42 +1,25 @@
 /**
- * "A. Interactor" {@link https://contest.yandex.ru/contest/28730/}
+ * "B. Кольцевая линия метро" {@link https://contest.yandex.ru/contest/28730/problems/B/}
  *
- * @param { number } exitCode (−128≤r≤127) — код завершения задачи,
- * @param { number } verdictI (0≤i≤7) — вердикт интерактора,
- * @param { number } verdictC (0≤c≤7) — вердикт чекера.
+ * @param { number } stationN (1<=100) общее количество станций кольцевой линии
+ * @param { number } start N станции, на которой он должен войти.
+ * @param { number } finish N станции, на которой он должен выйти. Числа i и j не совпадают.
  *
- * @return { number } одно целое число от 0<=r<=7 — итоговый вердикт системы.
+ * @return { number } минимальное количество промежуточных станций (не считая станции посадки и высадки), которые необходимо проехать
  */
-function checkSystem(exitCode, verdictI, verdictC) {
-  // Если интерактор выдал вердикт 0, итоговый вердикт равен 3 в случае,
-  //    если программа завершилась с ненулевым кодом, и вердикту чекера в противном случае.
-  // Если интерактор выдал вердикт 1, итоговый вердикт равен вердикту чекера.
-  // Если интерактор выдал вердикт 4, итоговый вердикт равен 3 в случае,
-  //     если программа завершилась с ненулевым кодом, и 4 в противном случае.
-  // Если интерактор выдал вердикт 6, итоговый вердикт равен 0.
-  // Если интерактор выдал вердикт 7, итоговый вердикт равен 1.
-  // В остальных случаях итоговый вердикт равен вердикту интерактора.
-
-  const mapVerdictItoFnResult = {
-    0: (code, c) => (code !== 0 ? 3 : c),
-    4: (code, c) => (code !== 0 ? 3 : 4),
-    1: (code, c) => c,
-    6: (code, c) => 0,
-    7: (code, c) => 1,
-  };
-
-  if (mapVerdictItoFnResult[verdictI]) {
-    return mapVerdictItoFnResult[verdictI](exitCode, verdictC);
+function calcMinStation(stationN, start, finish) {
+  // Можно ехать в обе стороны и через конец проезжать в начало и наоборот
+  if (finish < start) {
+    return Math.min(start - finish, stationN - start + finish) - 1;
   }
-
-  return verdictI;
+  return Math.min(finish - start, stationN - finish + start) - 1;
 }
 
 // eslint-disable-next-line no-unused-vars
 function inputProcessing(lines) {
-  const [exitCode, verdictI, verdictC] = lines;
+  const [stationN, start, finish] = lines[0].split(' ').map(Number);
 
-  return checkSystem(Number(exitCode), Number(verdictI), Number(verdictC));
+  return calcMinStation(stationN, start, finish);
 }
 
-module.exports = checkSystem;
+export default inputProcessing;
