@@ -1,5 +1,6 @@
 # Тренировки по алгоритмам от Яндекса
 
+[![wakatime](https://wakatime.com/badge/github/feeedback/yandex-algorithm-training.svg)](https://wakatime.com/badge/github/feeedback/yandex-algorithm-training)
 Каждый поток:
 
 - 8 лекций с домашними заданиями на платформе Яндекс.Контест и ответы на ваши вопросы;
