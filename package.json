@@ -16,6 +16,14 @@
     "testEnvironment": "node",
     "transform": {}
   },
+  "wallaby": {
+    "autoDetect": true,
+    "env": {
+      "params": {
+        "runner": "--experimental-vm-modules"
+      }
+    }
+  },
   "devDependencies": {
     "@jest/globals": "^27.0.3",
     "jest": "^27.0.4",

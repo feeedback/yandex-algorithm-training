@@ -1,5 +1,5 @@
 /**
- * "A. Interactor" {@link https://contest.yandex.ru/contest/28730/}
+ * "A. Interactor" {@link https://contest.yandex.ru/contest/28730/problems/A/}
  *
  * @param { number } exitCode (−128≤r≤127) — код завершения задачи,
  * @param { number } verdictI (0≤i≤7) — вердикт интерактора,
@@ -32,11 +32,10 @@ function checkSystem(exitCode, verdictI, verdictC) {
   return verdictI;
 }
 
-// eslint-disable-next-line no-unused-vars
 function inputProcessing(lines) {
-  const [exitCode, verdictI, verdictC] = lines;
+  const [exitCode, verdictI, verdictC] = lines.map(Number);
 
-  return checkSystem(Number(exitCode), Number(verdictI), Number(verdictC));
+  return checkSystem(exitCode, verdictI, verdictC);
 }
 
-module.exports = checkSystem;
+export default inputProcessing;
