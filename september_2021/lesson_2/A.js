@@ -1,5 +1,5 @@
 /**
- * "A. Количество равных максимальному" {@link https://contest.yandex.ru/contest/28738/problems/A/}
+ * "A. Количество равных максимальному" {@link "https://contest.yandex.ru/contest/28738/problems/A/}
  *
  * @param { Array<number } nums последовательность натуральных целых чисел, оканчивающаяся числом 0 (само число 0 в последовательность не входит).
  *

@@ -1,5 +1,5 @@
 /**
- * "C. Даты" {@link https://contest.yandex.ru/contest/28730/problems/C/}
+ * "C. Даты" {@link "https://contest.yandex.ru/contest/28730/problems/C/}
  *
  * @param { number } x день или месяц 1≤x≤31
  * @param { number } y день или месяц 1≤y≤31

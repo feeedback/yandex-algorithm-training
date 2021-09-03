@@ -1,5 +1,5 @@
 /**
- * "D. Строительство школы" {@link https://contest.yandex.ru/contest/28730/problems/D/}
+ * "D. Строительство школы" {@link "https://contest.yandex.ru/contest/28730/problems/D/}
  *
  * @param { number } studentsCount количество учеников (0 < N < 100001)
  * @param { Array<number> } studentsHomeCoordArr идут в строго возрастающем порядке координаты домов учеников — целые числа,

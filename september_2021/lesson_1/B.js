@@ -1,5 +1,5 @@
 /**
- * "B. Кольцевая линия метро" {@link https://contest.yandex.ru/contest/28730/problems/B/}
+ * "B. Кольцевая линия метро" {@link "https://contest.yandex.ru/contest/28730/problems/B/}
  *
  * @param { number } stationN (1<=100) общее количество станций кольцевой линии
  * @param { number } start N станции, на которой он должен войти.

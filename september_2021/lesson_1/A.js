@@ -1,5 +1,5 @@
 /**
- * "A. Interactor" {@link https://contest.yandex.ru/contest/28730/problems/A/}
+ * "A. Interactor" {@link "https://contest.yandex.ru/contest/28730/problems/A/}
  *
  * @param { number } exitCode (−128≤r≤127) — код завершения задачи,
  * @param { number } verdictI (0≤i≤7) — вердикт интерактора,
