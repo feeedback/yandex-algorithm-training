@@ -12,14 +12,13 @@
  * слева направо, в том порядке, в котором они встречаются во входных данных.
  */
 function calcWhichBlockStay(benchLength, leftCoordsBlock) {
-  let minBlockNeed = 1;
-  if (benchLength % 2 === 0) {
-    minBlockNeed = 2; // может быть два блока минимум
-  }
+  const minBlockNeed = benchLength % 2 === 0 ? 2 : 1;
   const setBlock = new Set(leftCoordsBlock);
   const centerIndex = Math.floor((benchLength - 1) / 2);
+  let leftBlock = null;
+  let rightBlock = null;
 
-  for (let delta = 0, leftBlock = null, rightBlock = null; delta <= centerIndex + 1; delta++) {
+  for (let delta = 0; delta <= centerIndex + 1; delta++) {
     const indexL = centerIndex - delta;
     const indexR = centerIndex + delta;
 
@@ -34,9 +33,11 @@ function calcWhichBlockStay(benchLength, leftCoordsBlock) {
     }
 
     if (leftBlock !== null && rightBlock !== null) {
-      return `${leftBlock} ${rightBlock}`;
+      break;
     }
   }
+
+  return `${leftBlock} ${rightBlock}`;
 }
 
 function inputProcessing(lines) {
