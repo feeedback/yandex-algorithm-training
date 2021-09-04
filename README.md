@@ -5,18 +5,18 @@
 
 - 8 лекций с домашними заданиями на платформе Яндекс.Контест и ответы на ваши вопросы;
 - 20 задач в неделю (домашних заданий)
-- 4 видеотрансляции с проверкой домашних заданий, разбором решений и популярных ошибок.
+- 4 видео-трансляции с проверкой домашних заданий, разбором решений и популярных ошибок.
 
 ### Содержание
 
-1. "Сложность, тестирование, особые случаи" [лекция](https://www.youtube.com/watch?v=QLhqYNsPIVo)
-2. "Линейный поиск" [лекция](https://www.youtube.com/watch?v=SKwB41FrGgU)
-3. "Множества" [лекция](https://www.youtube.com/watch?v=PUpmV2ieIHA)
-4. "Словари и сортировка подсчётом" [лекция](https://www.youtube.com/watch?v=Nb5mW1yWVSs)
-5. "Префиксные суммы и два указателя" [лекция](https://www.youtube.com/watch?v=de28y8Dcvkg)
-6. "Бинарный поиск" [лекция](https://www.youtube.com/watch?v=YENpZexHfuk)
-7. "Сортировка событий" [лекция](https://www.youtube.com/watch?v=hGixDBO-p6Q)
-8. "Деревья" [лекция](https://www.youtube.com/watch?v=lEJzqHgyels)
+1. "Сложность, тестирование, особые случаи" [**(** лекция **)**](https://www.youtube.com/watch?v=QLhqYNsPIVo)
+2. "Линейный поиск" [**(** лекция **)**](https://www.youtube.com/watch?v=SKwB41FrGgU)
+3. "Множества" [**(** лекция **)**](https://www.youtube.com/watch?v=PUpmV2ieIHA)
+4. "Словари и сортировка подсчётом" [**(** лекция **)**](https://www.youtube.com/watch?v=Nb5mW1yWVSs)
+5. "Префиксные суммы и два указателя" [**(** лекция **)**](https://www.youtube.com/watch?v=de28y8Dcvkg)
+6. "Бинарный поиск" [**(** лекция **)**](https://www.youtube.com/watch?v=YENpZexHfuk)
+7. "Сортировка событий" [**(** лекция **)**](https://www.youtube.com/watch?v=hGixDBO-p6Q)
+8. "Деревья" [**(** лекция **)**](https://www.youtube.com/watch?v=lEJzqHgyels)
 
 ### Июнь 2021
 
@@ -32,4 +32,12 @@
 ### Сентябрь 2021
 
 1. [контест](https://contest.yandex.ru/contest/28730/) | [решение задач](september_2021/lesson_1/)
-2. [контест](https://contest.yandex.ru/contest/28738/) | _решение задач_
+2. [контест](https://contest.yandex.ru/contest/28738/) | [решение задач](september_2021/lesson_2/)
+
+**Для запуска тестов**: `npm test [filepath]`
+
+**Как отправляю решение в Я.Контест:**
+
+- копирую/вставляю функцию с обработки логики `inputProcessing` из файла конкретной задачи,
+- копирую/вставляю содержимое файла [`contest-io-template.js`](https://github.com/feeedback/yandex-interview-contest/tree/main/contest-io-template.js), для обработки ввода-вывода
+*(Если решение с выводом понемногу в функции логики (для производительности), то копирую уже цельный код из файла конкретной задачи)*
