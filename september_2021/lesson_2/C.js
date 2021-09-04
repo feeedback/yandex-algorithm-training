@@ -6,28 +6,16 @@
  * @return { number } минимальное количество символов заменив которые строка станет палиндромом
  */
 function calcCountMinCharsReplaceToBePalindrome(str) {
-  const chars = str.split('');
-  const maxIndex = chars.length - 1;
+  const maxIndex = str.length - 1;
+  let charsNeedReplaceCount = 0;
 
-  let minCountCharReplaced = 0;
-
-  for (let i = 0; i < chars.length / 2; i += 1) {
-    const indexOppositeSide = maxIndex - i;
-
-    if (chars[i] === chars[indexOppositeSide]) {
-      continue;
-    }
-
-    minCountCharReplaced += 1;
-
-    if (chars[i] < chars[indexOppositeSide]) {
-      chars[indexOppositeSide] = chars[i];
-    } else {
-      chars[i] = chars[indexOppositeSide];
+  for (let i = 0; i < str.length / 2; i += 1) {
+    if (str[i] !== str[maxIndex - i]) {
+      charsNeedReplaceCount += 1;
     }
   }
 
-  return minCountCharReplaced;
+  return charsNeedReplaceCount;
 }
 
 function inputProcessing(lines) {
@@ -35,10 +23,3 @@ function inputProcessing(lines) {
 }
 
 export default inputProcessing;
-
-// function isPalindromeCheck(str) {
-//   for (let i = 0; i < str.length / 2; i++) {
-//     if (str[i] !== str[str.length - i - 1])   return false;
-//   }
-//   return true;
-// }
