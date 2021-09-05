@@ -32,6 +32,8 @@
 
 ### Сентябрь 2021
 
+_Дивизион B_
+
 1. [контест](https://contest.yandex.ru/contest/28730/) | [решение задач](september_2021/lesson_1/)
 2. [контест](https://contest.yandex.ru/contest/28738/) | [решение задач](september_2021/lesson_2/)
 
