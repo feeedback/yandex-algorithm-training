@@ -14,18 +14,14 @@ function calcMinBoardSize(width, height, count) {
   const aspectRatio = maxSide / minSide;
   const sqrtCount = Math.sqrt(count);
 
-  let maxCountByMaxSide = Math.ceil(sqrtCount / Math.sqrt(aspectRatio)) - 1;
-  if (maxCountByMaxSide < 0) {
-    maxCountByMaxSide = 0;
-  }
+  let maxCountByMaxSide = Math.ceil(sqrtCount / Math.sqrt(aspectRatio));
+
   while (Math.floor((maxCountByMaxSide * maxSide) / minSide) * maxCountByMaxSide < count) {
     maxCountByMaxSide += 1;
   }
 
-  let maxCountByMinSide = Math.ceil(sqrtCount * Math.sqrt(aspectRatio)) - 1;
-  if (maxCountByMinSide < 0) {
-    maxCountByMinSide = 0;
-  }
+  let maxCountByMinSide = Math.ceil(sqrtCount * Math.sqrt(aspectRatio));
+
   while (Math.floor((maxCountByMinSide * minSide) / maxSide) * maxCountByMinSide < count) {
     maxCountByMinSide += 1;
   }
