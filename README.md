@@ -25,8 +25,8 @@
 2. [контест](https://contest.yandex.ru/contest/27472) | [решение задач](june_2021/lesson_2/)
 3. [контест](https://contest.yandex.ru/contest/27663) | [решение задач](june_2021/lesson_3/)
 4. [контест](https://contest.yandex.ru/contest/27665) | [решение задач](june_2021/lesson_4/)
-5. [контест](https://contest.yandex.ru/contest/27794) | [решение задач](june_2021/lesson_5/)
-6. [контест](https://contest.yandex.ru/contest/27844) | _решение задач_
+5. [контест](https://contest.yandex.ru/contest/27794) | [частичное решение задач](june_2021/lesson_5/)
+6. [контест](https://contest.yandex.ru/contest/27844) | [частичное решение задач](june_2021/lesson_6/)
 7. [контест](https://contest.yandex.ru/contest/27883) | _решение задач_
 8. [контест](https://contest.yandex.ru/contest/28069) | _решение задач_
 
@@ -36,7 +36,7 @@ _Дивизион B_
 
 1. [контест](https://contest.yandex.ru/contest/28730/) | [решение задач](september_2021/lesson_1/)
 2. [контест](https://contest.yandex.ru/contest/28738/) | [решение задач](september_2021/lesson_2/)
-3. [контест](https://contest.yandex.ru/contest/28964/) | [решение задач](september_2021/lesson_3/)
+3. [контест](https://contest.yandex.ru/contest/28964/) | [частичное решение задач](september_2021/lesson_3/)
 4. [контест](https://contest.yandex.ru/contest/28970/) | _решение задач_
 
 **Для запуска тестов**: `npm test [filepath]`
