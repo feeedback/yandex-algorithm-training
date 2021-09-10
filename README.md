@@ -36,7 +36,7 @@ _Дивизион B_
 
 1. [контест](https://contest.yandex.ru/contest/28730/) | [решение задач](september_2021/lesson_1/)
 2. [контест](https://contest.yandex.ru/contest/28738/) | [решение задач](september_2021/lesson_2/)
-3. [контест](https://contest.yandex.ru/contest/28964/) | [частичное решение задач](september_2021/lesson_3/)
+3. [контест](https://contest.yandex.ru/contest/28964/) | [решение задач](september_2021/lesson_3/)
 4. [контест](https://contest.yandex.ru/contest/28970/) | _решение задач_
 
 **Для запуска тестов**: `npm test [filepath]`
