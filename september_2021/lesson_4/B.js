@@ -11,15 +11,16 @@
  * пробел, количество отданных за них голосов.
  */
 function calcVotesInTheElections(surnameWithVotes) {
-  const colorsSums = new Map();
+  const votesBySurname = new Map();
 
   for (let index = 0; index < surnameWithVotes.length; index++) {
     const [surname, votesCount] = surnameWithVotes[index];
 
-    colorsSums.set(surname, (colorsSums.get(surname) || 0) + Number(votesCount));
+    votesBySurname.set(surname, BigInt(votesBySurname.get(surname) || 0) + BigInt(votesCount));
   }
+  const surnames = [...votesBySurname.keys()].sort((a, b) => a.localeCompare(b));
 
-  return [...colorsSums].sort(([a], [b]) => a.localeCompare(b)).map((p) => p.join(' '));
+  return surnames.map((color) => `${color} ${votesBySurname.get(color)}`);
 }
 
 function inputProcessing(lines) {
