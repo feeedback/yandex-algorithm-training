@@ -1,8 +1,8 @@
 /**
  * "D. Угадай число" {@link "https://contest.yandex.ru/contest/28964/problems/D}
- * 
+ *
  * Август загадал натуральное число от 1 до maxPossibleNumber.
-
+ *
  * @param { number } maxPossibleNumber наибольшее число,которое мог загадать Август
  * @param { Array<string> } questionsAndAnswers идут строки, содержащие вопросы Беатрисы.
  * Каждая строка представляет собой набор чисел, разделенных пробелами. После каждой строки с
