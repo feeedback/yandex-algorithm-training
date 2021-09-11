@@ -11,7 +11,7 @@
  * @return { string[] } Выведите в порядке возрастания номера цвета пары чисел, каждая в новой
  * строке: номер цвета и сумму всех чисел данного цвета.
  */
-function calcCountIntersection(count, colorWithValues) {
+function calcColorsBoxCounts(count, colorWithValues) {
   const colorsSums = new Map();
 
   for (let index = 0; index < count; index++) {
@@ -27,7 +27,7 @@ function inputProcessing(lines) {
   const count = Number(lines[0]);
   const colorWithValues = lines.slice(1).map((line) => line.split(' ').map(Number));
 
-  return calcCountIntersection(count, colorWithValues);
+  return calcColorsBoxCounts(count, colorWithValues);
 }
 
 export default inputProcessing;
