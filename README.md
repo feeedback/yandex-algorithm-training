@@ -39,6 +39,10 @@ _Дивизион B_
 3. [контест](https://contest.yandex.ru/contest/28964/) | [решение задач](september_2021_B/lesson_3/)
 4. [контест](https://contest.yandex.ru/contest/28970/) | [решение задач](september_2021_B/lesson_4/)
 
+_Дивизион A_
+
+1. [контест](https://contest.yandex.ru/contest/28724/) | [частичное решение задач](september_2021_A/lesson_1/)
+
 **Для запуска тестов**: `npm test [filepath]`
 
 **Как отправляю решение в Я.Контест:**
