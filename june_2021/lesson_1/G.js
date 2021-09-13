@@ -37,13 +37,13 @@ function inputProcessing(lines) {
   return String(partsRes);
 }
 
-(async () => {
-  // const inputLines = await input(1);
-  const inputLines = ['30 5 7'];
-  console.log({ inputLines });
-  const outputLines = inputProcessing(inputLines);
-  console.log({ outputLines });
-  // output(outputLines);
-})();
+// (async () => {
+//   // const inputLines = await input(1);
+//   const inputLines = ['30 5 7'];
+//   console.log({ inputLines });
+//   const outputLines = inputProcessing(inputLines);
+//   console.log({ outputLines });
+//   // output(outputLines);
+// })();
 
 export default inputProcessing;
