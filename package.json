@@ -29,9 +29,5 @@
     "jest": "^27.0.4",
     "jest-cli": "^27.0.4"
   },
-  "bin": {},
-  "dependencies": {
-    "canvas": "^2.8.0",
-    "jsdom": "^17.0.0"
-  }
+  "bin": {}
 }
