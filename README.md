@@ -39,7 +39,7 @@ _Дивизион B_
 3. [контест](https://contest.yandex.ru/contest/28964/) | [решение](september_2021_B/lesson_3/) 5/5
 4. [контест](https://contest.yandex.ru/contest/28970/) | [решение](september_2021_B/lesson_4/) 5/5
 5. [контест](https://contest.yandex.ru/contest/29075/) | _решение_ 0/5
-6. [контест](https://contest.yandex.ru/contest/29188/) | _решение_ 0/5
+6. [контест](https://contest.yandex.ru/contest/29188/) | [решение](september_2021_B/lesson_6/) 1/5
 
 _Дивизион A_
 
