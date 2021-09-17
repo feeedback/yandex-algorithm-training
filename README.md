@@ -21,27 +21,29 @@
 
 ### Июнь 2021
 
-1. [контест](https://contest.yandex.ru/contest/27393) | [решение задач](june_2021/lesson_1/)
-2. [контест](https://contest.yandex.ru/contest/27472) | [решение задач](june_2021/lesson_2/)
-3. [контест](https://contest.yandex.ru/contest/27663) | [решение задач](june_2021/lesson_3/)
-4. [контест](https://contest.yandex.ru/contest/27665) | [решение задач](june_2021/lesson_4/)
-5. [контест](https://contest.yandex.ru/contest/27794) | [частичное решение задач](june_2021/lesson_5/)
-6. [контест](https://contest.yandex.ru/contest/27844) | [частичное решение задач](june_2021/lesson_6/)
-7. [контест](https://contest.yandex.ru/contest/27883) | _решение задач_
-8. [контест](https://contest.yandex.ru/contest/28069) | _решение задач_
+1. [контест](https://contest.yandex.ru/contest/27393) | [решение](june_2021/lesson_1/) 10/11
+2. [контест](https://contest.yandex.ru/contest/27472) | [решение](june_2021/lesson_2/) 10/10
+3. [контест](https://contest.yandex.ru/contest/27663) | [решение](june_2021/lesson_3/) 9/10
+4. [контест](https://contest.yandex.ru/contest/27665) | [решение](june_2021/lesson_4/) 10/10
+5. [контест](https://contest.yandex.ru/contest/27794) | [решение](june_2021/lesson_5/) 2/8
+6. [контест](https://contest.yandex.ru/contest/27844) | [решение](june_2021/lesson_6/) 3/11
+7. [контест](https://contest.yandex.ru/contest/27883) | _решение_ 0/10
+8. [контест](https://contest.yandex.ru/contest/28069) | _решение_ 0/10
 
 ### Сентябрь 2021
 
 _Дивизион B_
 
-1. [контест](https://contest.yandex.ru/contest/28730/) | [решение задач](september_2021_B/lesson_1/)
-2. [контест](https://contest.yandex.ru/contest/28738/) | [решение задач](september_2021_B/lesson_2/)
-3. [контест](https://contest.yandex.ru/contest/28964/) | [решение задач](september_2021_B/lesson_3/)
-4. [контест](https://contest.yandex.ru/contest/28970/) | [решение задач](september_2021_B/lesson_4/)
+1. [контест](https://contest.yandex.ru/contest/28730/) | [решение](september_2021_B/lesson_1/) 5/5
+2. [контест](https://contest.yandex.ru/contest/28738/) | [решение](september_2021_B/lesson_2/) 5/5
+3. [контест](https://contest.yandex.ru/contest/28964/) | [решение](september_2021_B/lesson_3/) 5/5
+4. [контест](https://contest.yandex.ru/contest/28970/) | [решение](september_2021_B/lesson_4/) 5/5
+5. [контест](https://contest.yandex.ru/contest/29075/) | _решение_ 0/5
+6. [контест](https://contest.yandex.ru/contest/29188/) | _решение_ 0/5
 
 _Дивизион A_
 
-1. [контест](https://contest.yandex.ru/contest/28724/) | [частичное решение задач](september_2021_A/lesson_1/)
+1. [контест](https://contest.yandex.ru/contest/28724/) | [решение](september_2021_A/lesson_1/) 2/5
 
 **Для запуска тестов**: `npm test [filepath]`
 
