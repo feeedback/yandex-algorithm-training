@@ -8,9 +8,9 @@
  * @param { Array<number> } segments - Ti и Li – время прибытия соответствующего груза и время,
  * требуемое для его обработки (1 ≤ Ti ≤ 10^6, 1 ≤ Li ≤ 10^6).
  *
- * @return { number } Вывести одно число - наименьшее количество аппаратов
+ * @return { number } наименьшее количество аппаратов
  */
-function lengthWhenWasAtLeastOne(n, segments) {
+function maxCountSegmentsAtSameTime(n, segments) {
   const EVENT_TYPE = { begin: 0, end: -1 }; // сначала освобождение аппарата
   const events = [];
 
@@ -22,7 +22,7 @@ function lengthWhenWasAtLeastOne(n, segments) {
   }
 
   events.sort((prev, next) => prev.time - next.time || prev.type - next.type);
-  console.log({ events });
+
   let nowCount = 0;
   let max = 0;
 
@@ -43,7 +43,7 @@ function inputProcessing(lines) {
   const n = Number(lines[0]);
   const segmentsLR = lines.slice(1).map((lr) => lr.split(' ').map(Number));
 
-  return lengthWhenWasAtLeastOne(n, segmentsLR);
+  return maxCountSegmentsAtSameTime(n, segmentsLR);
 }
 
 export default inputProcessing;
