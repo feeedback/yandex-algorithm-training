@@ -32,7 +32,7 @@
 
 ### Сентябрь 2021
 
-_Дивизион B_
+_Дивизион ***B***_
 
 1. [контест](https://contest.yandex.ru/contest/28730/) | [решение](september_2021_B/lesson_1/) 5/5
 2. [контест](https://contest.yandex.ru/contest/28738/) | [решение](september_2021_B/lesson_2/) 5/5
@@ -42,9 +42,16 @@ _Дивизион B_
 6. [контест](https://contest.yandex.ru/contest/29188/) | [решение](september_2021_B/lesson_6/) 2/5
 7. [контест](https://contest.yandex.ru/contest/29396/) | [решение](september_2021_B/lesson_7/) 3/5
 
-_Дивизион A_
+_Дивизион **A**_
 
 1. [контест](https://contest.yandex.ru/contest/28724/) | [решение](september_2021_A/lesson_1/) 2/5
+
+### Февраль 2023
+
+_Дивизион **B**_
+_(Сменился формат задач, теперь неn блоков, все задачи сразу в одном контесте)_
+
+1. [контест](https://contest.yandex.ru/contest/45468/problems/1) | [решение](february_2023_B/1.js)
 
 **Для запуска тестов**: `npm test [filepath]`
 

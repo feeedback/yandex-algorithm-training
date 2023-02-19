@@ -15,15 +15,15 @@ const rotateArr270Degree = (input) => {
   input.forEach((row, i) => {
     row.forEach((cell, j) => {
       output[row.length - j - 1] = output[row.length - j - 1] ?? [];
-
       output[row.length - j - 1][i] = cell;
     });
   });
   return output;
 };
+
 /**
  * "1. Гистограмма" {@link "https://contest.yandex.ru/contest/45468/problems/1}
-
+ *
  * @param { string } inputStr Ввод содержит строчные и прописные латинские буквы, цифры, знаки
  *  препинания («.», «!», «?», «:», «-», «,», «;», «(», «)»), пробелы и переводы строк. Текст
  *  содержит хотя бы один непробельный символ
@@ -37,15 +37,15 @@ const rotateArr270Degree = (input) => {
 function inputProcessing(inputStr) {
   const mapCharToCounts = calcCharsOccurrence(Array.isArray(inputStr) ? inputStr.join('\n') : inputStr);
 
-  const charsCounts = Object.entries(mapCharToCounts).sort((prev, next) => prev[0].charCodeAt() - next[0].charCodeAt());
+  const charsWithCounts = Object.entries(mapCharToCounts).sort((prev, next) => prev[0].charCodeAt() - next[0].charCodeAt());
 
-  const maxCount = Math.max(...charsCounts.map(([, count]) => count));
+  const maxCount = Math.max(...charsWithCounts.map(([, count]) => count));
 
-  const histogram = charsCounts.map(([char, count]) => Array.from(`${char}${'#'.repeat(count)}`.padEnd(maxCount + 1, ' ')));
+  const histogramArr = charsWithCounts.map(([char, count]) => [...`${char}${'#'.repeat(count)}`.padEnd(maxCount + 1, ' ')]);
 
-  const rotatedHistogram = rotateArr270Degree(histogram);
+  const rotatedHistogramArr = rotateArr270Degree(histogramArr);
 
-  const histogramTextDraw = rotatedHistogram.map((line) => line.join('')).join('\n');
+  const histogramTextDraw = rotatedHistogramArr.map((line) => line.join('')).join('\n');
 
   return histogramTextDraw;
 }
