@@ -1,4 +1,6 @@
 /**
+ * @todo DRAFT version, solution not ready
+ *
  * "C. Минимальное покрытие" {@link "https://contest.yandex.ru/contest/29396/problems/C/}
  *
  * На прямой задано некоторое множество отрезков с целочисленными координатами концов [Li, Ri].
