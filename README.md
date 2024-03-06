@@ -56,7 +56,7 @@ _Дивизион **B**_
 
 _также делаю решение на Go_
 
-1. [контест](https://contest.yandex.ru/contest/59539/problems/) | [решение](march_2024/lesson_1/) 1/10
+1. [контест](https://contest.yandex.ru/contest/59539/problems/) | [решение](march_2024/lesson_1/) 2/10
 
 **Для запуска тестов**: `npm test [filepath]`
 
