@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest --passWithNoTests"
+    "test": "npx jest --passWithNoTests march_2024"
   },
   "author": "Alexander Rzhanitsyn",
   "license": "ISC",
