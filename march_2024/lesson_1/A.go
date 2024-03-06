@@ -30,7 +30,7 @@ func countPaintedTrees(treeIndexV, treeIndexM, radiusV, radiusM int) int {
 	return paintedTrees
 }
 
-func main() {
+func mainA() {
 	var treeIndexV, treeIndexM, radiusV, radiusM int
 	fmt.Scan(&treeIndexV, &radiusV, &treeIndexM, &radiusM)
 

@@ -20,18 +20,12 @@ function countPaintedTrees(
   if (minIndexM > maxIndexV) { gap = Math.max(0, minIndexM - maxIndexV - 1) }
 
   const paintedTrees = maxDistance - gap + 1
-  console.log({
-    treeIndexV,
-    treeIndexM,
-    radiusV,
-    radiusM
-  });
-  console.log({ maxDistance, gap });
+  
   return paintedTrees;
 }
 
 /**
- * "A. Покраска деревьев" {@link "https://contest.yandex.ru/contest/59539/problems/1}
+ * "A. Покраска деревьев" {@link "https://contest.yandex.ru/contest/59539/problems/A}
  *
  * @param { string[] } lines В первой строке содержится два целых числа P и V — номер дерева, у
  * которого стоит ведро Васи и на сколько деревьев он может от него удаляться. В второй строке
