@@ -9,16 +9,11 @@
   "author": "Alexander Rzhanitsyn",
   "license": "ISC",
   "engines": {
-    "node": ">=14"
+    "node": ">=22"
   },
   "type": "module",
   "wallaby": {
-    "autoDetect": true,
-    "env": {
-      "params": {
-        "runner": "--experimental-vm-modules"
-      }
-    }
+    "autoDetect": true
   },
   "bin": {}
 }
