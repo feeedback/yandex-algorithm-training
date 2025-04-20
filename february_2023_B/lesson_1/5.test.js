@@ -1,7 +1,7 @@
-import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
-import fn from './5.js';
+import { describe, test } from 'node:test';
 import { multiLineStrToArrStr as toLines } from '../../utils.js';
+import fn from './5.js';
 
 describe('february_2023_B/lesson_1/5', () => {
   // В первом тесте имеется по одной дощечке с каждой из 3 различных букв. Ответ 2 достигается на строке "abc"

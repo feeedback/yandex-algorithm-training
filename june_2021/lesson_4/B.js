@@ -12,6 +12,7 @@
 // Выведите ответ на задачу.
 
 import fs from 'fs';
+
 // const fs = require('fs');
 
 function inputProcessing() {

@@ -1,5 +1,5 @@
-import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
+import { describe, test } from 'node:test';
 import fn from './G.js';
 
 describe('june_2021/lesson_1/G', () => {

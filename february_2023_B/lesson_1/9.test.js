@@ -1,7 +1,7 @@
-import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
-import fn from './9.js';
+import { describe, test } from 'node:test';
 import { multiLineStrToArrStr as toLines } from '../../utils.js';
+import fn from './9.js';
 
 describe('february_2023_B/lesson_1/9', () => {
   test('1', () => {
