@@ -17,6 +17,7 @@
   },
   "bin": {},
   "devDependencies": {
-    "@biomejs/biome": "2.0.0-beta.1"
+    "@biomejs/biome": "2.0.0-beta.1",
+    "lefthook": "^1.11.10"
   }
 }
