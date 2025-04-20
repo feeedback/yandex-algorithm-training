@@ -1,9 +1,10 @@
-import { test, expect } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
 import fn from './4.js';
 import { multiLineStrToArrStr as toLines } from '../../utils.js';
 
 test('1', () => {
-  expect(
+  assert.strictEqual(
     fn(
       toLines(
         `25
@@ -11,28 +12,28 @@ test('1', () => {
 1
 2`
       )
-    )
-  ).toStrictEqual('2 2');
+    ), '2 2'
+  );
 });
 
 test('2', () => {
-  expect(
+  assert.strictEqual(
     fn(
       toLines(`25
 13
 7
 1`)
-    )
-  ).toStrictEqual('-1');
+    ), '-1'
+  );
 });
 
 test('4', () => {
-  expect(
+  assert.strictEqual(
     fn(
       toLines(`11
 5
 3
 2`)
-    )
-  ).toStrictEqual('1 1');
+    ), '1 1'
+  );
 });

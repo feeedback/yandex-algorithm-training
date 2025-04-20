@@ -1,8 +1,9 @@
-import { test, expect } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';;
 import fn from './B.js';
 
 test('1', () => {
-  expect(fn(['3', '1 1 4 2 3 0 2 3', '1 1 5 2 2 3 3 0', '0 0 5 1 6 3 1 2'])).toStrictEqual([
+  assert.strictEqual(fn(['3', '1 1 4 2 3 0 2 3', '1 1 5 2 2 3 3 0', '0 0 5 1 6 3 1 2']), [
     'YES',
     'NO',
     'YES',
@@ -10,11 +11,11 @@ test('1', () => {
 });
 
 test('2 from Bot', () => {
-  expect(fn(['2', '10 10 12 12 11 14 13 16', '10 10 20 9 19 19 9 20'])).toStrictEqual(['YES', 'YES']);
+  assert.strictEqual(fn(['2', '10 10 12 12 11 14 13 16', '10 10 20 9 19 19 9 20']), ['YES', 'YES']);
 });
 
 test('8 from Bot. check self-intersecting', () => {
-  expect(
+  assert.strictEqual(
     fn([
       '9',
       '100 100 -100 -100 -1 1 1 -1',
@@ -27,22 +28,22 @@ test('8 from Bot. check self-intersecting', () => {
       '-11 -5 0 0 -1 -5 -10 0',
       '-11 -5 -10 0 -1 -5 0 0',
     ])
-  ).toStrictEqual([
-    'YES',
-    'YES',
-    'YES',
-    'NO',
-    'NO',
-    'NO',
-    'YES',
-    'YES',
-    'YES',
-    //
-  ]);
+    , [
+      'YES',
+      'YES',
+      'YES',
+      'NO',
+      'NO',
+      'NO',
+      'YES',
+      'YES',
+      'YES',
+      //
+    ]);
 });
 
 test('10 from Bot', () => {
-  expect(
+  assert.strictEqual(
     fn([
       '10',
       '0 0 -5 0 -10 0 -7 4',
@@ -56,17 +57,17 @@ test('10 from Bot', () => {
       '9 1 0 0 10 0 1 1',
       '0 0 5 0 1 1 6 1',
     ])
-  ).toStrictEqual([
-    'NO',
-    'NO',
-    'NO',
-    'NO',
-    'NO',
-    'NO',
-    'NO',
-    'NO',
-    'NO',
-    'YES',
-    //
-  ]);
+    , [
+      'NO',
+      'NO',
+      'NO',
+      'NO',
+      'NO',
+      'NO',
+      'NO',
+      'NO',
+      'NO',
+      'YES',
+      //
+    ]);
 });

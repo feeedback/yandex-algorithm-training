@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest --passWithNoTests march_2024/lesson_1/B.test.js"
+    "test": "node --test"
   },
   "author": "Alexander Rzhanitsyn",
   "license": "ISC",
@@ -12,10 +12,6 @@
     "node": ">=14"
   },
   "type": "module",
-  "jest": {
-    "testEnvironment": "node",
-    "transform": {}
-  },
   "wallaby": {
     "autoDetect": true,
     "env": {
@@ -23,11 +19,6 @@
         "runner": "--experimental-vm-modules"
       }
     }
-  },
-  "devDependencies": {
-    "@jest/globals": "^27.0.3",
-    "jest": "^27.0.4",
-    "jest-cli": "^27.0.4"
   },
   "bin": {}
 }

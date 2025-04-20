@@ -1,18 +1,19 @@
-import { test, expect } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';;
 import fn from './E.js';
 
 test('1', () => {
-  expect(fn([5, '1 1'])).toStrictEqual(0);
+  assert.strictEqual(fn([5, '1 1']), 0);
 });
 
 test('2', () => {
-  expect(fn([3, '-1 -1'])).toStrictEqual(1);
+  assert.strictEqual(fn([3, '-1 -1']), 1);
 });
 
 test('3', () => {
-  expect(fn([4, '4 4'])).toStrictEqual(2);
+  assert.strictEqual(fn([4, '4 4']), 2);
 });
 
 test('4', () => {
-  expect(fn([4, '2 2'])).toStrictEqual(0);
+  assert.strictEqual(fn([4, '2 2']), 0);
 });

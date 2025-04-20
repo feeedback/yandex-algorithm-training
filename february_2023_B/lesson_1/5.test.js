@@ -1,10 +1,11 @@
-import { test, expect } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
 import fn from './5.js';
 import { multiLineStrToArrStr as toLines } from '../../utils.js';
 
 // В первом тесте имеется по одной дощечке с каждой из 3 различных букв. Ответ 2 достигается на строке "abc"
 test('1', () => {
-  expect(
+  assert.strictEqual(
     fn(
       toLines(
         `3
@@ -13,27 +14,27 @@ test('1', () => {
 1
 `
       )
-    )
-  ).toStrictEqual(2);
+    ), 2
+  );
 });
 
 test('2', () => {
-  expect(
+  assert.strictEqual(
     fn(
       toLines(`2
 3
 4
 `)
-    )
-  ).toStrictEqual(3);
+    ), 3
+  );
 });
 
 test('my', () => {
-  expect(
+  assert.strictEqual(
     fn(
       toLines(`1
 99
 `)
-    )
-  ).toStrictEqual(0);
+    ), 0
+  );
 });

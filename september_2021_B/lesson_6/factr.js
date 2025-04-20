@@ -220,8 +220,8 @@ export { divisors2, divisors0, printDivisors1 };
 //     const output2 = printDivisors1(num);
 //     const time2 = Date.now() - start2;
 
-//     expect(output1).toStrictEqual(output2);
-//     // expect(time1).toBeLessThanOrEqual(time2);
+//     assert.strictEqual(output1, output2);
+//     // assert.strictEqual(time1).toBeLessThanOrEqual(time2);
 //     console.log(time1, time2);
 //   });
 // }

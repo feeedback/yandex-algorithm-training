@@ -1,20 +1,19 @@
-import { test, expect, describe } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
 import fn from './2.js';
 
-describe('simplified two chars test', () => {
-  test('max at begin', () => {
-    expect(fn(['2', 'abbaaba'])).toStrictEqual(5);
-  });
+test('simplified two chars test - max at begin', () => {
+  assert.strictEqual(fn(['2', 'abbaaba']), 5);
+});
 
-  test('max at end', () => {
-    expect(fn(['2', 'bbabaa'])).toStrictEqual(5);
-  });
+test('simplified two chars test - max at end', () => {
+  assert.strictEqual(fn(['2', 'bbabaa']), 5);
 });
 
 test('1', () => {
-  expect(fn(['2', 'abcaz'])).toStrictEqual(4);
+  assert.strictEqual(fn(['2', 'abcaz']), 4);
 });
 
 test('2', () => {
-  expect(fn(['2', 'helto'])).toStrictEqual(3);
+  assert.strictEqual(fn(['2', 'helto']), 3);
 });

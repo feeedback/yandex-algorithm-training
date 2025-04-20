@@ -1,12 +1,13 @@
-import { test, expect } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';;
 import fn from './D.js';
 
 test('1', () => {
-  expect(fn(['10', '1 2 3 4 5', 'YES', '2 4 6 8 10', 'NO', 'HELP'])).toStrictEqual('1 3 5');
+  assert.strictEqual(fn(['10', '1 2 3 4 5', 'YES', '2 4 6 8 10', 'NO', 'HELP']), '1 3 5');
 });
 
 test('2', () => {
-  expect(
+  assert.strictEqual(
     fn([
       '10',
       '1 2 3 4 5 6 7 8 9 10',
@@ -31,11 +32,11 @@ test('2', () => {
       'NO',
       'HELP',
     ])
-  ).toStrictEqual('5');
+    , '5');
 });
 
 test('3 BOT', () => {
-  expect(
+  assert.strictEqual(
     fn([
       '100',
       '3 5 8 10 11 13 14 15 16 20 21 23 25 27 29 31 32 33 35 42 43 46 47 48 51 52 57 58 67 68 72 74 75 76 79 80 81 82 83 84 86 89 90 91 92 93 94 95 96 99',
@@ -50,9 +51,9 @@ test('3 BOT', () => {
       'YES',
       'HELP',
     ])
-  ).toStrictEqual('23 81 83');
+    , '23 81 83');
 });
 
 test('4 BOT~analog', () => {
-  expect(fn(['10', '1 2 3 4 5 6 7 8', 'NO', 'HELP'])).toStrictEqual('9 10');
+  assert.strictEqual(fn(['10', '1 2 3 4 5 6 7 8', 'NO', 'HELP']), '9 10');
 });

@@ -1,8 +1,9 @@
-import { test, expect } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';;
 import fn from './C.js';
 
 test('1', () => {
-  expect(
+  assert.strictEqual(
     fn([
       'hi',
       'hi',
@@ -14,24 +15,24 @@ test('1', () => {
       'claude van damme',
       'jean claude van damme',
     ])
-  ).toStrictEqual([
-    'damme',
-    'is',
-    'name',
-    'van',
-    'bond',
-    'claude',
-    'hi',
-    'my',
-    'james',
-    'jean',
-    'what',
-    'your',
-  ]);
+    , [
+      'damme',
+      'is',
+      'name',
+      'van',
+      'bond',
+      'claude',
+      'hi',
+      'my',
+      'james',
+      'jean',
+      'what',
+      'your',
+    ]);
 });
 
 test('2', () => {
-  expect(fn(['oh you touch my tralala', 'mmm my ding ding dong'])).toStrictEqual([
+  assert.strictEqual(fn(['oh you touch my tralala', 'mmm my ding ding dong']), [
     'ding',
     'my',
     'dong',
@@ -44,5 +45,5 @@ test('2', () => {
 });
 
 test('3', () => {
-  expect(fn(['ai ai ai ai ai ai ai ai ai ai'])).toStrictEqual(['ai']);
+  assert.strictEqual(fn(['ai ai ai ai ai ai ai ai ai ai']), ['ai']);
 });

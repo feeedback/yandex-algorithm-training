@@ -1,15 +1,16 @@
-import { test, expect } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';;
 import fn from './E.js';
 
 test('1', () => {
-  expect(fn(['3', 'ABC', 'A37', 'BCDA', '2', 'A317BD', 'B137AC'])).toStrictEqual(['B137AC']);
+  assert.strictEqual(fn(['3', 'ABC', 'A37', 'BCDA', '2', 'A317BD', 'B137AC']), ['B137AC']);
 });
 
 test('2', () => {
-  expect(fn(['2', '1ABC', '3A4B', '3', 'A143BC', 'C143AB', 'AAABC1'])).toStrictEqual(['A143BC', 'C143AB']);
+  assert.strictEqual(fn(['2', '1ABC', '3A4B', '3', 'A143BC', 'C143AB', 'AAABC1']), ['A143BC', 'C143AB']);
 });
 test('3 from Bot', () => {
-  expect(
+  assert.strictEqual(
     fn([
       '1',
       'AAAAAAAAAAAA',
@@ -28,17 +29,17 @@ test('3 from Bot', () => {
       'A',
       'AAAAAAAAAAAAAAAAAAAA',
     ])
-  ).toStrictEqual([
-    'AAAAAAAAAAAAAB',
-    'BASD234234',
-    'ASDBSBF',
-    'SDASDSD',
-    'AAAAAA',
-    'ASDBSBF',
-    'AAAAAA',
-    'BABA',
-    'AB',
-    'A',
-    'AAAAAAAAAAAAAAAAAAAA',
-  ]);
+    , [
+      'AAAAAAAAAAAAAB',
+      'BASD234234',
+      'ASDBSBF',
+      'SDASDSD',
+      'AAAAAA',
+      'ASDBSBF',
+      'AAAAAA',
+      'BABA',
+      'AB',
+      'A',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ]);
 });

@@ -1,9 +1,10 @@
-import { test, expect } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';;
 import fn from './8.js';
 import { multiLineStrToArrStr as toLines } from '../../utils.js';
 
 test('1', () => {
-  expect(
+  assert.strictEqual(
     fn(
       toLines(
         `3
@@ -12,5 +13,5 @@ test('1', () => {
 5 5`
       )
     )
-  ).toStrictEqual('1 1 5 10');
+    , '1 1 5 10')
 });

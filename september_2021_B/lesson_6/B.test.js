@@ -1,4 +1,5 @@
-import { test, expect } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';;
 import fn from './B.js';
 
 const splitLine = (str) => str.trim().split('\n');
@@ -59,6 +60,6 @@ for (let i = 1; i <= data.length; i++) {
   const [input, output] = data[i - 1];
 
   test(`${i}`, () => {
-    expect(fn(splitLine(input))).toStrictEqual(splitLine(output));
+    assert.strictEqual(fn(splitLine(input)), splitLine(output));
   });
 }

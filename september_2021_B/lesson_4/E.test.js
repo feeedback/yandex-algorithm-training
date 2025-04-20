@@ -1,8 +1,9 @@
-import { test, expect } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';;
 import fn from './E.js';
 
 test('1', () => {
-  expect(
+  assert.strictEqual(
     fn([
       '7',
       '0',
@@ -22,15 +23,15 @@ test('1', () => {
       '6',
       'Интересно, какие будут задачи',
     ])
-  ).toStrictEqual('Олимпиада по информатике');
+    , 'Олимпиада по информатике');
 });
 
 test('2', () => {
-  expect(fn(['1', '0', 'topic 1', 'body 1'])).toStrictEqual('topic 1');
+  assert.strictEqual(fn(['1', '0', 'topic 1', 'body 1']), 'topic 1');
 });
 
 test('My - cЕсли таких тем несколько, то выведите первую в хронологическом порядкеc', () => {
-  expect(
+  assert.strictEqual(
     fn([
       '4',
       '0',
@@ -44,11 +45,11 @@ test('My - cЕсли таких тем несколько, то выведите
       '2',
       'Где найти?',
     ])
-  ).toStrictEqual('Олимпиада по информатике');
+    , 'Олимпиада по информатике');
 });
 
 test('6 from bot ~ similar', () => {
-  expect(
+  assert.strictEqual(
     fn([
       '25',
       '0',
@@ -77,5 +78,5 @@ test('6 from bot ~ similar', () => {
       '0',
       'topic 4',
     ])
-  ).toStrictEqual('topic 1');
+    , 'topic 1');
 });

@@ -1,8 +1,9 @@
-import { test, expect } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
 import fn from './1.js';
 
 test('1', () => {
-  expect(fn('Hello, world!')).toStrictEqual(
+  assert.strictEqual(fn('Hello, world!'),
     `     #   
      ##  
 #########
@@ -11,12 +12,11 @@ test('1', () => {
 });
 
 test('2', () => {
-  expect(
+  assert.strictEqual(
     fn(`Twas brillig, and the slithy toves
 Did gyre and gimble in the wabe;
 All mimsy were the borogoves,
-And the mome raths outgrabe.`)
-  ).toStrictEqual(
+And the mome raths outgrabe.`),
     `         #              
          #              
          #              

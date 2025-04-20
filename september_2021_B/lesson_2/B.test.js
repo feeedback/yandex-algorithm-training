@@ -1,8 +1,9 @@
-import { test, expect } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';;
 import fn from './B.js';
 
 test('1', () => {
-  expect(fn(['2 0 1 1 0 1 0 2 1 2'])).toStrictEqual(3);
+  assert.strictEqual(fn(['2 0 1 1 0 1 0 2 1 2']), 3);
 
   // Примечания;
   // В примере из условия дальше всего идти до ближайшего магазина жителям четвертого дома: ближайший
@@ -10,5 +11,5 @@ test('1', () => {
   // домов придется пройти меньшее расстояние до ближайшего магазина, поэтому ответ 3.
 });
 test('My', () => {
-  expect(fn(['2 1 1 1'])).toStrictEqual(3);
+  assert.strictEqual(fn(['2 1 1 1']), 3);
 });

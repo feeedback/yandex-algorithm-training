@@ -1,10 +1,11 @@
-import { test, expect } from '@jest/globals';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';;
 import fn from './E.js';
 
 test('1', () => {
-  expect(fn(['2', '2 1'])).toStrictEqual(1);
+  assert.strictEqual(fn(['2', '2 1']), 1);
 });
 
 test('My', () => {
-  expect(fn(['3', '1000 2 5'])).toStrictEqual(7);
+  assert.strictEqual(fn(['3', '1000 2 5']), 7);
 });
