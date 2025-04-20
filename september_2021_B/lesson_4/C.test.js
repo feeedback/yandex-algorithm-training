@@ -15,8 +15,8 @@ describe('september_2021_B/lesson_4/C', () => {
         'van damme',
         'claude van damme',
         'jean claude van damme',
-      ])
-      , [
+      ]),
+      [
         'damme',
         'is',
         'name',
@@ -29,20 +29,15 @@ describe('september_2021_B/lesson_4/C', () => {
         'jean',
         'what',
         'your',
-      ]);
+      ]
+    );
   });
 
   test('2', () => {
-    assert.deepStrictEqual(fn(['oh you touch my tralala', 'mmm my ding ding dong']), [
-      'ding',
-      'my',
-      'dong',
-      'mmm',
-      'oh',
-      'touch',
-      'tralala',
-      'you',
-    ]);
+    assert.deepStrictEqual(
+      fn(['oh you touch my tralala', 'mmm my ding ding dong']),
+      ['ding', 'my', 'dong', 'mmm', 'oh', 'touch', 'tralala', 'you']
+    );
   });
 
   test('3', () => {

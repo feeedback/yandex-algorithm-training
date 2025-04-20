@@ -29,7 +29,11 @@ const binarySearch = (leftInit = 0, rightInit, checkFn) => {
  */
 function howManyElementsBetweenLR(sortedNums, N, l, r) {
   const rIdx = binarySearch(0, N, (middleIndex) => sortedNums[middleIndex] > r);
-  const lIdx = binarySearch(0, N, (middleIndex) => sortedNums[middleIndex] >= l);
+  const lIdx = binarySearch(
+    0,
+    N,
+    (middleIndex) => sortedNums[middleIndex] >= l
+  );
 
   return rIdx - lIdx;
 }
@@ -43,7 +47,9 @@ function inputProcessing(lines) {
   const K = Number(lines[2]); // 1-10^5
   const pairsLR = lines.slice(3, 3 + K).map((lr) => lr.split(' ').map(Number));
 
-  return pairsLR.map(([l, r]) => howManyElementsBetweenLR(sortedNums, N, l, r)).join(' ');
+  return pairsLR
+    .map(([l, r]) => howManyElementsBetweenLR(sortedNums, N, l, r))
+    .join(' ');
 }
 
 export default inputProcessing;

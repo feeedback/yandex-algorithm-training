@@ -38,7 +38,9 @@ function inputProcessing(lines) {
 
   const segments = lines.slice(1, N).map((xy) => xy.split(' ').map(Number));
 
-  const ways = new Array(waysCount).fill(0).map((_, i) => lines[N + 1 + 1 * (i + 1)].split(' ').map(Number));
+  const ways = new Array(waysCount)
+    .fill(0)
+    .map((_, i) => lines[N + 1 + 1 * (i + 1)].split(' ').map(Number));
 
   console.log({ N, waysCount, segments, ways });
   // let setsCount = 0;

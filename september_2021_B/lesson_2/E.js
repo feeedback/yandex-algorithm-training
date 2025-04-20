@@ -8,7 +8,9 @@
  */
 function calcMinSecondToFoundDiplomas(folderCount, diplomasCountByFolder) {
   return (
-    diplomasCountByFolder.sort((a, b) => a - b).reduce((sum, diplomasCount) => sum + diplomasCount, 0) -
+    diplomasCountByFolder
+      .sort((a, b) => a - b)
+      .reduce((sum, diplomasCount) => sum + diplomasCount, 0) -
     diplomasCountByFolder[folderCount - 1]
   );
 }

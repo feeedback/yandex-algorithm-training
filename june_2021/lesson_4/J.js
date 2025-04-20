@@ -59,7 +59,9 @@ function inputProcessing(lines) {
   const isCanStartFromDigit = lineFirst[2] === 'yes';
 
   const dictKeyWords = new Set(lines.slice(1, 1 + N)); // слово <= 50 символов
-  const dictKeyWordsAll = new Set(lines.slice(1, 1 + N).map((wordKey) => wordKey.toLowerCase())); // слово <= 50 символов
+  const dictKeyWordsAll = new Set(
+    lines.slice(1, 1 + N).map((wordKey) => wordKey.toLowerCase())
+  ); // слово <= 50 символов
 
   const code = lines.slice(1 + N).flatMap((str) => str.match(/\w+/g)); // строки <=10kB
 
@@ -73,7 +75,9 @@ function inputProcessing(lines) {
     }
     if (
       /\D/.test(word) &&
-      (isCaseSensitive ? !dictKeyWords.has(word) : !dictKeyWordsAll.has(word.toLowerCase())) &&
+      (isCaseSensitive
+        ? !dictKeyWords.has(word)
+        : !dictKeyWordsAll.has(word.toLowerCase())) &&
       (isCanStartFromDigit || /^\D.*/.test(word))
     ) {
       const variable = isCaseSensitive ? word : word.toLowerCase();

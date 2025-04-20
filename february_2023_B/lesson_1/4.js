@@ -1,4 +1,7 @@
-const _chunk = (arr, size) => Array.from({ length: Math.ceil(arr.length / size) }, (v, i) => arr.slice(i * size, i * size + size));
+const _chunk = (arr, size) =>
+  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+    arr.slice(i * size, i * size + size)
+  );
 
 // eslint-disable-next-line no-unused-vars
 const drawPlaces = (studentsCount, taskCount, petya, vasya = null) => {
@@ -15,14 +18,24 @@ const drawPlaces = (studentsCount, taskCount, petya, vasya = null) => {
   }
 
   const maxChar = String(taskCount).length;
-  const draw = table.map(([left, right]) => `|${`${left}`.padStart(maxChar)}|${`${right ?? ' '}`.padStart(maxChar)}|`).join('\n');
+  const draw = table
+    .map(
+      ([left, right]) =>
+        `|${`${left}`.padStart(maxChar)}|${`${right ?? ' '}`.padStart(maxChar)}|`
+    )
+    .join('\n');
 
   return draw;
 };
 
 const intDivision = (a, b) => Math.floor(a / b);
 
-const calcVasyaBestPlace = (studentsCount, taskCount, petyaPlaceY, petyaPlaceX) => {
+const calcVasyaBestPlace = (
+  studentsCount,
+  taskCount,
+  petyaPlaceY,
+  petyaPlaceX
+) => {
   const getPlaceNum = ({ y, x }) => y * 2 - (x % 2);
 
   const getX = (placeNum) => 2 - (placeNum % 2);

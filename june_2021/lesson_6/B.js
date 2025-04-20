@@ -36,7 +36,10 @@ const createBinarySearchIndexFn = (sortedNums, compareFn = (a, b) => a < b) => {
  * массива, наиболее близкое к данному. Если таких несколько, выведите меньшее из них.
  */
 function searchNearestNumber(sortedArrN, arrayK) {
-  const binarySearchIndex = createBinarySearchIndexFn(sortedArrN, (a, b) => a < b);
+  const binarySearchIndex = createBinarySearchIndexFn(
+    sortedArrN,
+    (a, b) => a < b
+  );
   const getDelta = (primaryNum, num) => Math.abs(num - primaryNum);
 
   return arrayK.map((num) => {
@@ -47,7 +50,10 @@ function searchNearestNumber(sortedArrN, arrayK) {
     }
 
     const [indexRight, indexLeft] = foundIndex;
-    const [valueRight, valueLeft] = [sortedArrN[indexRight], sortedArrN[indexLeft]];
+    const [valueRight, valueLeft] = [
+      sortedArrN[indexRight],
+      sortedArrN[indexLeft],
+    ];
 
     if (indexLeft < 0) {
       return valueRight;
@@ -56,7 +62,9 @@ function searchNearestNumber(sortedArrN, arrayK) {
       return valueLeft;
     }
 
-    return getDelta(valueRight, num) < getDelta(valueLeft, num) ? valueRight : valueLeft;
+    return getDelta(valueRight, num) < getDelta(valueLeft, num)
+      ? valueRight
+      : valueLeft;
   });
 }
 

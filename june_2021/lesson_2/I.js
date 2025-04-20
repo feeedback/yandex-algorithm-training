@@ -40,14 +40,22 @@ function inputProcessing(lines) {
     }
 
     _initFieldAndFillValue(value) {
-      return Array.from({ length: this.y }, () => new Array(this.x).fill(value));
+      return Array.from({ length: this.y }, () =>
+        new Array(this.x).fill(value)
+      );
     }
 
     _getArea8(cellX, cellY) {
       const area8 = [];
       for (let y = cellY - 1; y <= cellY + 1; y += 1) {
         for (let x = cellX - 1; x <= cellX + 1; x += 1) {
-          if (y >= 0 && y < this.y && x >= 0 && x < this.x && !(cellX === x && cellY === y)) {
+          if (
+            y >= 0 &&
+            y < this.y &&
+            x >= 0 &&
+            x < this.x &&
+            !(cellX === x && cellY === y)
+          ) {
             area8.push({ x, y });
           }
         }
@@ -81,7 +89,9 @@ function inputProcessing(lines) {
     }
 
     init() {
-      this.field = this._initFieldAndFillValue(mapDefinitionToSymbol.ZERO_MINES_NEARBY);
+      this.field = this._initFieldAndFillValue(
+        mapDefinitionToSymbol.ZERO_MINES_NEARBY
+      );
       this._initMines();
       this._calculateMinesAndSetCounterValues();
     }

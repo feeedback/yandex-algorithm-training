@@ -43,7 +43,7 @@ function calculateGoalsNeeded(
     return queryGoals + 1;
   }
   // чтобы не допустим ничью, накидываем гол
-  if ((team1GoalsAllMatchOnOpponentPitch === team2GoalsAllMatchOnOpponentPitch)) {
+  if (team1GoalsAllMatchOnOpponentPitch === team2GoalsAllMatchOnOpponentPitch) {
     return queryGoals + 1;
   }
 
@@ -66,11 +66,11 @@ function calculateGoalsNeeded(
  */
 function inputProcessing(lines) {
   const [goalsFirstMatchTeam1, goalsFirstMatchTeam2] = lines[0]
-    .split(":")
+    .split(':')
     .map(Number);
 
   const [goalsSecondMatchTeam1, goalsSecondMatchTeam2] = lines[1]
-    .split(":")
+    .split(':')
     .map(Number);
 
   const isFirstTeamPlayingAsVisitorInFirstMatch = Number(lines[2]) === 2;

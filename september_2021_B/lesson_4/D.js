@@ -51,7 +51,8 @@ function calcPartyVotes(partyWithVotes) {
   // получила большее число голосов.
   const partiesFractionPart = partiesFractionPartRaw.sort(
     (prev, next) =>
-      next.fractPart - prev.fractPart || votesByParty.get(next.party) - votesByParty.get(prev.party)
+      next.fractPart - prev.fractPart ||
+      votesByParty.get(next.party) - votesByParty.get(prev.party)
   );
 
   let index = 0;

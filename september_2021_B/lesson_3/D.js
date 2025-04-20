@@ -22,7 +22,10 @@ function guessPossibleNumber(maxPossibleNumber, questionsAndAnswers) {
     if (answer === 'YES') {
       question.forEach((num) => {
         if (num <= maxPossibleNumber) {
-          possibleNumberByQuestions.set(num, (possibleNumberByQuestions.get(num) || 0) + 1);
+          possibleNumberByQuestions.set(
+            num,
+            (possibleNumberByQuestions.get(num) || 0) + 1
+          );
         }
       });
       questionsYesCount += 1;

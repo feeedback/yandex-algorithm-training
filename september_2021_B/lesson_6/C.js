@@ -34,8 +34,16 @@ const binarySearch = (leftInit = 0, rightInit, checkFn) => {
  * @return { x } Выведите единственный корень уравнения с точностью не менее 5 знаков после десятичной точки.
  */
 function howManyElementsBetweenLR(sortedNums, N, num) {
-  const rIdx = binarySearch(0, N, (middleIndex) => sortedNums[middleIndex] > num);
-  const lIdx = binarySearch(0, N, (middleIndex) => sortedNums[middleIndex] >= num);
+  const rIdx = binarySearch(
+    0,
+    N,
+    (middleIndex) => sortedNums[middleIndex] > num
+  );
+  const lIdx = binarySearch(
+    0,
+    N,
+    (middleIndex) => sortedNums[middleIndex] >= num
+  );
 
   if (rIdx === lIdx) {
     return [0, 0];
@@ -114,7 +122,10 @@ async function inputProcessing(lines) {
 
   const [a, b, c, d] = coefficients;
 
-  const [divisorD, divisorA] = [getDivisors(Math.abs(d)), getDivisors(Math.abs(a))];
+  const [divisorD, divisorA] = [
+    getDivisors(Math.abs(d)),
+    getDivisors(Math.abs(a)),
+  ];
   console.log({ divisorD, divisorA });
   let betterDiff = Infinity;
   let betterX = null;

@@ -35,8 +35,12 @@ function calcMostPopularTopic(text) {
 
       mapTopicIdToMessageCount.set(topicId, 0);
     } else {
-      const topicIdAssociatedWithThisMessage = mapMessageIndexToRelatedTopicId.get(line);
-      mapMessageIndexToRelatedTopicId.set(messageIndex, topicIdAssociatedWithThisMessage);
+      const topicIdAssociatedWithThisMessage =
+        mapMessageIndexToRelatedTopicId.get(line);
+      mapMessageIndexToRelatedTopicId.set(
+        messageIndex,
+        topicIdAssociatedWithThisMessage
+      );
 
       mapTopicIdToMessageCount.set(
         topicIdAssociatedWithThisMessage,
@@ -46,7 +50,9 @@ function calcMostPopularTopic(text) {
   }
 
   const maxAnswerToTopic = Math.max(...[...mapTopicIdToMessageCount.values()]);
-  const [mostPopularTopicId] = [...mapTopicIdToMessageCount].find(([, count]) => count === maxAnswerToTopic);
+  const [mostPopularTopicId] = [...mapTopicIdToMessageCount].find(
+    ([, count]) => count === maxAnswerToTopic
+  );
 
   return mapTopicIdToTitle.get(mostPopularTopicId);
 }

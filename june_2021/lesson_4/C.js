@@ -36,8 +36,12 @@ function inputProcessing() {
     }
     mapCountToWord[count].push(word);
   }
-  const [, wordsMaxCount] = Object.entries(mapCountToWord).sort(([countA], [countB]) => +countB - +countA)[0];
-  const wordsFreq = wordsMaxCount.sort((countA, countB) => String(countA).localeCompare(countB));
+  const [, wordsMaxCount] = Object.entries(mapCountToWord).sort(
+    ([countA], [countB]) => +countB - +countA
+  )[0];
+  const wordsFreq = wordsMaxCount.sort((countA, countB) =>
+    String(countA).localeCompare(countB)
+  );
   const [wordMaxFreq] = wordsFreq;
 
   // console.log({ words, mapWordToCount, mapCountToWord, wordMaxFreq });

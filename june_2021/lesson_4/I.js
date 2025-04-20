@@ -54,13 +54,19 @@ function inputProcessing(lines) {
     return 0;
   }
   const dictWithStress = new Set(lines.slice(1, 1 + wordCountInDict)); // слово <= 30 символов
-  const dict = new Set(lines.slice(1, 1 + wordCountInDict).map((word) => word.toLowerCase())); // слово <= 30 символов
+  const dict = new Set(
+    lines.slice(1, 1 + wordCountInDict).map((word) => word.toLowerCase())
+  ); // слово <= 30 символов
 
   let errors = 0;
   for (const word of strWords) {
     const stressCount = (word.match(/[A-Z]/g) || []).length;
 
-    if (!dict.has(word.toLowerCase()) ? stressCount !== 1 : !dictWithStress.has(word)) {
+    if (
+      !dict.has(word.toLowerCase())
+        ? stressCount !== 1
+        : !dictWithStress.has(word)
+    ) {
       errors += 1;
     }
   }

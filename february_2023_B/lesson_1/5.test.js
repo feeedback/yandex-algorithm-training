@@ -15,7 +15,8 @@ describe('february_2023_B/lesson_1/5', () => {
 1
 `
         )
-      ), 2
+      ),
+      2
     );
   });
 
@@ -26,7 +27,8 @@ describe('february_2023_B/lesson_1/5', () => {
 3
 4
 `)
-      ), 3
+      ),
+      3
     );
   });
 
@@ -36,7 +38,8 @@ describe('february_2023_B/lesson_1/5', () => {
         toLines(`1
 99
 `)
-      ), 0
+      ),
+      0
     );
   });
 });

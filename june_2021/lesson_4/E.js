@@ -17,7 +17,9 @@
 
 function inputProcessing(lines) {
   const [, ...blocksRaw] = lines;
-  const blocks = blocksRaw.map((widthAndHeight) => widthAndHeight.split(' ').map(Number));
+  const blocks = blocksRaw.map((widthAndHeight) =>
+    widthAndHeight.split(' ').map(Number)
+  );
 
   const mapWidthToBlocks = {};
   let sumHeight = 0;

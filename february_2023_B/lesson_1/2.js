@@ -6,7 +6,11 @@ const twoPointerAlgorithm = (availableReplaceCount, string, pivotChar) => {
   let maxBeauty = 0;
   const textLength = string.length;
 
-  for (let leftIndex = 0, rightIndex = 0; leftIndex < textLength; leftIndex += 1) {
+  for (
+    let leftIndex = 0, rightIndex = 0;
+    leftIndex < textLength;
+    leftIndex += 1
+  ) {
     while (rightIndex < textLength) {
       if (string[rightIndex] !== pivotChar) {
         if (replaceCount >= availableReplaceCount) {
@@ -35,13 +39,25 @@ const twoPointerAlgorithm = (availableReplaceCount, string, pivotChar) => {
   return maxBeauty;
 };
 
-const maxLengthConsecutiveCharactersAfterXReplace = (availableReplaceCount, string, alphabet = ALPHABET_LOWERCASE) => {
+const maxLengthConsecutiveCharactersAfterXReplace = (
+  availableReplaceCount,
+  string,
+  alphabet = ALPHABET_LOWERCASE
+) => {
   let maxBeauty = 0;
 
-  for (let alphabetIndex = 0; alphabetIndex < alphabet.length; alphabetIndex += 1) {
+  for (
+    let alphabetIndex = 0;
+    alphabetIndex < alphabet.length;
+    alphabetIndex += 1
+  ) {
     const pivotChar = alphabet[alphabetIndex];
 
-    const maxBeautyByChar = twoPointerAlgorithm(availableReplaceCount, string, pivotChar);
+    const maxBeautyByChar = twoPointerAlgorithm(
+      availableReplaceCount,
+      string,
+      pivotChar
+    );
     if (maxBeautyByChar > maxBeauty) {
       maxBeauty = maxBeautyByChar;
     }

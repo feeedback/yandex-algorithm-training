@@ -22,7 +22,10 @@ function calcMaxDistanceFromHomeToShop(buildingList) {
       case 2:
         if (prevShopIndex !== null) {
           for (const houseIndex of houseWithoutTwoShop) {
-            const distance = Math.min(Math.abs(houseIndex - index), Math.abs(houseIndex - prevShopIndex));
+            const distance = Math.min(
+              Math.abs(houseIndex - index),
+              Math.abs(houseIndex - prevShopIndex)
+            );
 
             if (distance > maxDistance) {
               maxDistance = distance;

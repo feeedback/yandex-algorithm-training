@@ -22,7 +22,13 @@ const fn = (diegoStickers, collectorsMinQueryNums) => {
   const { length: setLength } = setDiegoStickers;
 
   return collectorsMinQueryNums.map(
-    (minQuery) => setLength - binarySearch(0, setLength, (middleIndex) => minQuery > setDiegoStickers[middleIndex])
+    (minQuery) =>
+      setLength -
+      binarySearch(
+        0,
+        setLength,
+        (middleIndex) => minQuery > setDiegoStickers[middleIndex]
+      )
   );
 };
 

@@ -34,8 +34,16 @@ const binarySearch = (leftInit = 0, rightInit, checkFn) => {
  * два нуля, разделенных пробелом.
  */
 function howManyElementsBetweenLR(sortedNums, N, num) {
-  const rIdx = binarySearch(0, N, (middleIndex) => sortedNums[middleIndex] > num);
-  const lIdx = binarySearch(0, N, (middleIndex) => sortedNums[middleIndex] >= num);
+  const rIdx = binarySearch(
+    0,
+    N,
+    (middleIndex) => sortedNums[middleIndex] > num
+  );
+  const lIdx = binarySearch(
+    0,
+    N,
+    (middleIndex) => sortedNums[middleIndex] >= num
+  );
 
   if (rIdx === lIdx) {
     return [0, 0];
@@ -49,7 +57,9 @@ function inputProcessing(lines) {
   // const K = Number(lines[2]); // 1-10^5
   const queryNums = lines[3].split(' ').map(Number);
 
-  return queryNums.map((num) => howManyElementsBetweenLR(sortedNums, N, num).join(' '));
+  return queryNums.map((num) =>
+    howManyElementsBetweenLR(sortedNums, N, num).join(' ')
+  );
 }
 
 export default inputProcessing;

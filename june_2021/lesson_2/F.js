@@ -76,7 +76,9 @@ function inputProcessing(lines) {
     }
   }
 
-  return stack.length === 0 ? '0' : [String(stack.length), [...stack].reverse().join(' ')];
+  return stack.length === 0
+    ? '0'
+    : [String(stack.length), [...stack].reverse().join(' ')];
 }
 
 export default inputProcessing;

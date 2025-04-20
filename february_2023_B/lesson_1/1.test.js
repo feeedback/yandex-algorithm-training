@@ -4,7 +4,8 @@ import fn from './1.js';
 
 describe('february_2023_B/lesson_1/1', () => {
   test('1', () => {
-    assert.strictEqual(fn('Hello, world!'),
+    assert.strictEqual(
+      fn('Hello, world!'),
       `     #   
      ##  
 #########

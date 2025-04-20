@@ -1,6 +1,9 @@
 import readline from 'readline';
 
-const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
 const promisedReadline = () =>
   new Promise((resolve, reject) => {
@@ -25,7 +28,9 @@ export const input = async (INPUT_LINE_COUNT = 1) => {
       inputLines.push(data.toString().trim());
     } catch (error) {
       console.log(error);
-      console.log(`Received ${inputLines.length} just lines. Expected ${INPUT_LINE_COUNT}`);
+      console.log(
+        `Received ${inputLines.length} just lines. Expected ${INPUT_LINE_COUNT}`
+      );
       rl.close();
       return inputLines;
     }
@@ -37,6 +42,8 @@ export const input = async (INPUT_LINE_COUNT = 1) => {
 };
 
 export const output = (outputLines) => {
-  process.stdout.write(Array.isArray(outputLines) ? outputLines.join('\n') : String(outputLines));
+  process.stdout.write(
+    Array.isArray(outputLines) ? outputLines.join('\n') : String(outputLines)
+  );
   // process.exit();
 };

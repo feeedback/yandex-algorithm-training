@@ -4,7 +4,9 @@ const calcWorkingOsCount = (segmentsCount, segments) => {
   for (const segment of segments) {
     const [beginNew, endNew] = segment;
 
-    existedOS = existedOS.filter(([begin, end]) => !(beginNew <= end && begin <= endNew));
+    existedOS = existedOS.filter(
+      ([begin, end]) => !(beginNew <= end && begin <= endNew)
+    );
 
     existedOS.push(segment);
   }

@@ -24,7 +24,11 @@ describe('september_2021_B/lesson_7/C_draft', () => {
   });
 
   test('my 4', () => {
-    assert.deepStrictEqual(fn(['2', '0 1', '1 1', '1 2', '0 0']), ['2', '0 1', '1 2']);
+    assert.deepStrictEqual(fn(['2', '0 1', '1 1', '1 2', '0 0']), [
+      '2',
+      '0 1',
+      '1 2',
+    ]);
   });
 
   // test('my 5', () => {

@@ -25,7 +25,10 @@
 import fs from 'fs';
 import readline from 'readline';
 
-const rl = readline.createInterface({ input: fs.createReadStream('input.txt'), output: process.stdout });
+const rl = readline.createInterface({
+  input: fs.createReadStream('input.txt'),
+  output: process.stdout,
+});
 
 const clients = new Map();
 

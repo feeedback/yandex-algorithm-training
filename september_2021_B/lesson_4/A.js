@@ -20,14 +20,18 @@ function calcColorsBoxCounts(count, colorWithValues) {
     colorsSums.set(color, BigInt(colorsSums.get(color) || 0) + value);
   }
 
-  const colors = [...colorsSums.keys()].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+  const colors = [...colorsSums.keys()].sort((a, b) =>
+    a < b ? -1 : a > b ? 1 : 0
+  );
 
   return colors.map((color) => `${color} ${colorsSums.get(color)}`);
 }
 
 function inputProcessing(lines) {
   const count = BigInt(lines[0]);
-  const colorWithValues = lines.slice(1).map((line) => line.split(' ').map((n) => BigInt(n)));
+  const colorWithValues = lines
+    .slice(1)
+    .map((line) => line.split(' ').map((n) => BigInt(n)));
 
   return calcColorsBoxCounts(count, colorWithValues);
 }

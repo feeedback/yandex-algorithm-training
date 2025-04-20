@@ -1,4 +1,7 @@
-const getTrianglePointVectorProducts = ({ A: [xA, yA], B: [xB, yB], C: [xC, yC] }, [pointX, pointY]) => {
+const getTrianglePointVectorProducts = (
+  { A: [xA, yA], B: [xB, yB], C: [xC, yC] },
+  [pointX, pointY]
+) => {
   const ABxAP = (xA - pointX) * (yB - yA) - (xB - xA) * (yA - pointY);
   const BCxBP = (xB - pointX) * (yC - yB) - (xC - xB) * (yB - pointY);
   const CAxCP = (xC - pointX) * (yA - yC) - (xA - xC) * (yC - pointY);
@@ -6,7 +9,8 @@ const getTrianglePointVectorProducts = ({ A: [xA, yA], B: [xB, yB], C: [xC, yC] 
   return [ABxAP, BCxBP, CAxCP];
 };
 
-const distanceBetweenTwoPoint = ([x1, y1], [x2, y2]) => Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+const distanceBetweenTwoPoint = ([x1, y1], [x2, y2]) =>
+  Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 
 /**
  * "E. Точка и треугольник" {@link "https://contest.yandex.ru/contest/28730/problems/E}
@@ -22,7 +26,10 @@ const distanceBetweenTwoPoint = ([x1, y1], [x2, y2]) => Math.sqrt((x2 - x1) ** 2
  */
 function calcBetterCoordForBuildSchool(cathetus, pointXY) {
   const triangleVertices = { A: [0, 0], B: [cathetus, 0], C: [0, cathetus] };
-  const vectorProducts = getTrianglePointVectorProducts(triangleVertices, pointXY);
+  const vectorProducts = getTrianglePointVectorProducts(
+    triangleVertices,
+    pointXY
+  );
 
   if (
     vectorProducts.some((v) => v === 0) ||
@@ -35,12 +42,18 @@ function calcBetterCoordForBuildSchool(cathetus, pointXY) {
     return 0;
   }
 
-  const distanceFromPointToTriangleVertices = Object.values(triangleVertices).map((coord) =>
-    distanceBetweenTwoPoint(pointXY, coord)
+  const distanceFromPointToTriangleVertices = Object.values(
+    triangleVertices
+  ).map((coord) => distanceBetweenTwoPoint(pointXY, coord));
+  const minDistanceToVerticesTriangleFromPoint = Math.min(
+    ...distanceFromPointToTriangleVertices
   );
-  const minDistanceToVerticesTriangleFromPoint = Math.min(...distanceFromPointToTriangleVertices);
 
-  return distanceFromPointToTriangleVertices.indexOf(minDistanceToVerticesTriangleFromPoint) + 1;
+  return (
+    distanceFromPointToTriangleVertices.indexOf(
+      minDistanceToVerticesTriangleFromPoint
+    ) + 1
+  );
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -78,11 +91,17 @@ function calcBetterCoordForBuildSchoolByArea(cathetus, pointXY) {
     return 0;
   }
 
-  const distanceFromPointToTriangleVertices = Object.values(triangleVertices).map((coord) =>
-    distanceBetweenTwoPoint(pointXY, coord)
+  const distanceFromPointToTriangleVertices = Object.values(
+    triangleVertices
+  ).map((coord) => distanceBetweenTwoPoint(pointXY, coord));
+  const minDistanceToVerticesTriangleFromPoint = Math.min(
+    ...distanceFromPointToTriangleVertices
   );
-  const minDistanceToVerticesTriangleFromPoint = Math.min(...distanceFromPointToTriangleVertices);
 
-  return distanceFromPointToTriangleVertices.indexOf(minDistanceToVerticesTriangleFromPoint) + 1;
+  return (
+    distanceFromPointToTriangleVertices.indexOf(
+      minDistanceToVerticesTriangleFromPoint
+    ) + 1
+  );
 }
 export default inputProcessing;

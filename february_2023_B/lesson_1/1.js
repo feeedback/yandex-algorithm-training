@@ -35,17 +35,25 @@ const rotateArr270Degree = (input) => {
  *  Отсортируйте столбики в порядке увеличения кодов символов.
  */
 function inputProcessing(inputStr) {
-  const mapCharToCounts = calcCharsOccurrence(Array.isArray(inputStr) ? inputStr.join('\n') : inputStr);
+  const mapCharToCounts = calcCharsOccurrence(
+    Array.isArray(inputStr) ? inputStr.join('\n') : inputStr
+  );
 
-  const charsWithCounts = Object.entries(mapCharToCounts).sort((prev, next) => prev[0].charCodeAt() - next[0].charCodeAt());
+  const charsWithCounts = Object.entries(mapCharToCounts).sort(
+    (prev, next) => prev[0].charCodeAt() - next[0].charCodeAt()
+  );
 
   const maxCount = Math.max(...charsWithCounts.map(([, count]) => count));
 
-  const histogramArr = charsWithCounts.map(([char, count]) => [...`${char}${'#'.repeat(count)}`.padEnd(maxCount + 1, ' ')]);
+  const histogramArr = charsWithCounts.map(([char, count]) => [
+    ...`${char}${'#'.repeat(count)}`.padEnd(maxCount + 1, ' '),
+  ]);
 
   const rotatedHistogramArr = rotateArr270Degree(histogramArr);
 
-  const histogramTextDraw = rotatedHistogramArr.map((line) => line.join('')).join('\n');
+  const histogramTextDraw = rotatedHistogramArr
+    .map((line) => line.join(''))
+    .join('\n');
 
   return histogramTextDraw;
 }

@@ -21,14 +21,20 @@ function guessPossibleNumber(
   countCarNumbers,
   numbersOfSuspected
 ) {
-  const witnessTestimonySets = numbersFromWitnessTestimony.map((numbers) => [...new Set(numbers)]);
+  const witnessTestimonySets = numbersFromWitnessTestimony.map((numbers) => [
+    ...new Set(numbers),
+  ]);
   const suspectedNumberCountWitness = new Array(countCarNumbers).fill(0);
 
   let max = 0;
 
   for (let m = 0; m < countWitnesses; m++) {
     for (let n = 0; n < countCarNumbers; n++) {
-      if (witnessTestimonySets[m].every((char) => numbersOfSuspected[n].includes(char))) {
+      if (
+        witnessTestimonySets[m].every((char) =>
+          numbersOfSuspected[n].includes(char)
+        )
+      ) {
         suspectedNumberCountWitness[n] += 1;
 
         if (suspectedNumberCountWitness[n] > max) {
@@ -38,7 +44,9 @@ function guessPossibleNumber(
     }
   }
 
-  return numbersOfSuspected.filter((carNumber, i) => suspectedNumberCountWitness[i] === max);
+  return numbersOfSuspected.filter(
+    (carNumber, i) => suspectedNumberCountWitness[i] === max
+  );
 }
 
 function inputProcessing(lines) {

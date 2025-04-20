@@ -39,7 +39,13 @@ function inputProcessing(lines) {
     for (let y = 0; y < nums.length; y++) {
       if (x !== y) {
         for (let z = 0; z < nums.length; z++) {
-          if (y !== z && x !== z && nums[x] !== null && nums[y] !== null && nums[z] !== null) {
+          if (
+            y !== z &&
+            x !== z &&
+            nums[x] !== null &&
+            nums[y] !== null &&
+            nums[z] !== null
+          ) {
             const product = nums[x] * nums[y] * nums[z];
             // console.log([nums[x], nums[y], nums[z]], { product });
             if (product > maxProduct) {

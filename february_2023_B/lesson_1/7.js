@@ -15,11 +15,19 @@ const secToTime = (totalSeconds) => {
 };
 
 const getClientTime = (reqSentTimeStr, serverTimeStr, reqReceivedTimeStr) => {
-  const [reqSentTime, serverTime, reqReceivedTimeRaw] = [reqSentTimeStr, serverTimeStr, reqReceivedTimeStr].map(timeToSec);
+  const [reqSentTime, serverTime, reqReceivedTimeRaw] = [
+    reqSentTimeStr,
+    serverTimeStr,
+    reqReceivedTimeStr,
+  ].map(timeToSec);
 
-  const reqReceivedTime = reqReceivedTimeRaw < reqSentTime ? reqReceivedTimeRaw + 24 * 3600 : reqReceivedTimeRaw;
+  const reqReceivedTime =
+    reqReceivedTimeRaw < reqSentTime
+      ? reqReceivedTimeRaw + 24 * 3600
+      : reqReceivedTimeRaw;
 
-  const clientTime = serverTime + Math.round((reqReceivedTime - reqSentTime) / 2);
+  const clientTime =
+    serverTime + Math.round((reqReceivedTime - reqSentTime) / 2);
 
   return secToTime(clientTime);
 };

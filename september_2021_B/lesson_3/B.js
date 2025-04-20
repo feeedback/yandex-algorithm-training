@@ -8,7 +8,9 @@
 function mapIsThisNumberPreviouslyOccurred(list) {
   const setVisited = new Set();
 
-  return list.map((num) => (setVisited.has(num) ? 'YES' : setVisited.add(num) && 'NO'));
+  return list.map((num) =>
+    setVisited.has(num) ? 'YES' : setVisited.add(num) && 'NO'
+  );
 }
 
 function inputProcessing(lines) {

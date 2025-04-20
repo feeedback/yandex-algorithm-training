@@ -14,7 +14,8 @@
 
 function inputProcessing(lines) {
   const getPodezd = (floorRaw, floorMax) => Math.ceil(floorRaw / floorMax);
-  const getFloor = (floorRaw, podezd, floorMax) => Math.floor(floorRaw - (podezd - 1) * floorMax);
+  const getFloor = (floorRaw, podezd, floorMax) =>
+    Math.floor(floorRaw - (podezd - 1) * floorMax);
 
   const [K1, M, K2, P2, N2] = lines[0].split(' ').map(Number);
 
@@ -28,7 +29,10 @@ function inputProcessing(lines) {
     room: K1,
   };
 
-  if (oldAddr.floor > floorMax || (oldAddr.podezd === 1 && oldAddr.room / oldAddr.floor < 1)) {
+  if (
+    oldAddr.floor > floorMax ||
+    (oldAddr.podezd === 1 && oldAddr.room / oldAddr.floor < 1)
+  ) {
     return [-1, -1].join(' ');
   }
 
@@ -36,13 +40,16 @@ function inputProcessing(lines) {
     newAddr.floor = floorMax;
   }
 
-  const roomByFloorRaw = Math.ceil(oldAddr.room / ((oldAddr.podezd - 1) * floorMax + oldAddr.floor));
+  const roomByFloorRaw = Math.ceil(
+    oldAddr.room / ((oldAddr.podezd - 1) * floorMax + oldAddr.floor)
+  );
 
   if (oldAddr.floor === 1 && oldAddr.podezd === 1) {
     const floorRaw = Math.ceil(newAddr.room / roomByFloorRaw);
 
     newAddr.podezd = floorRaw < floorMax ? getPodezd(floorRaw, floorMax) : 0;
-    newAddr.floor = newAddr.floor ?? newAddr.room < oldAddr.room ? oldAddr.floor : 0;
+    newAddr.floor =
+      (newAddr.floor ?? newAddr.room < oldAddr.room) ? oldAddr.floor : 0;
 
     return [newAddr.podezd, newAddr.floor].join(' ');
   }
@@ -50,7 +57,11 @@ function inputProcessing(lines) {
   const variantPodezd = new Set();
   const variantFloor = new Set();
 
-  for (let roomByFloorI = roomByFloorRaw; roomByFloorI <= roomByFloorRaw + 1; roomByFloorI++) {
+  for (
+    let roomByFloorI = roomByFloorRaw;
+    roomByFloorI <= roomByFloorRaw + 1;
+    roomByFloorI++
+  ) {
     const floorInputRaw = Math.ceil(oldAddr.room / roomByFloorI);
     const podezdInput = getPodezd(floorInputRaw, floorMax);
     const floorInput = getFloor(floorInputRaw, podezdInput, floorMax);

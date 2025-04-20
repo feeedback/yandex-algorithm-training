@@ -15,5 +15,8 @@
   "wallaby": {
     "autoDetect": true
   },
-  "bin": {}
+  "bin": {},
+  "devDependencies": {
+    "@biomejs/biome": "2.0.0-beta.1"
+  }
 }

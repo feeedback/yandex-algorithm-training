@@ -30,19 +30,28 @@ function inputProcessing(lines) {
   // const keysCount = Number(lines[0]);
   const keysResource = lines[1].split(' ').map(Number);
   const clicks = lines[3].split(' ').map(Number);
-  const mapKeyIndexToResource = Object.fromEntries(keysResource.map((resource, i) => [i, resource]));
+  const mapKeyIndexToResource = Object.fromEntries(
+    keysResource.map((resource, i) => [i, resource])
+  );
 
   for (const keyIndex of clicks) {
     mapKeyIndexToResource[keyIndex - 1] -= 1;
   }
 
-  const keysBroken = Object.values(mapKeyIndexToResource).map((resource) => (resource < 0 ? 'YES' : 'NO'));
+  const keysBroken = Object.values(mapKeyIndexToResource).map((resource) =>
+    resource < 0 ? 'YES' : 'NO'
+  );
   return keysBroken;
 }
 
 (async () => {
   // const inputLines = await input(1);
-  const inputLines = ['5', '1 50 3 4 3', '16', '1 2 3 4 5 1 3 3 4 5 5 5 5 5 4 5'];
+  const inputLines = [
+    '5',
+    '1 50 3 4 3',
+    '16',
+    '1 2 3 4 5 1 3 3 4 5 5 5 5 5 4 5',
+  ];
   // const inputLines = input;
   console.log({ inputLines });
   const outputLines = inputProcessing(inputLines);

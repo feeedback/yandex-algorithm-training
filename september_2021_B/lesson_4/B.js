@@ -16,9 +16,14 @@ function calcVotesInTheElections(surnameWithVotes) {
   for (let index = 0; index < surnameWithVotes.length; index++) {
     const [surname, votesCount] = surnameWithVotes[index];
 
-    votesBySurname.set(surname, BigInt(votesBySurname.get(surname) || 0) + BigInt(votesCount));
+    votesBySurname.set(
+      surname,
+      BigInt(votesBySurname.get(surname) || 0) + BigInt(votesCount)
+    );
   }
-  const surnames = [...votesBySurname.keys()].sort((a, b) => a.localeCompare(b));
+  const surnames = [...votesBySurname.keys()].sort((a, b) =>
+    a.localeCompare(b)
+  );
 
   return surnames.map((color) => `${color} ${votesBySurname.get(color)}`);
 }

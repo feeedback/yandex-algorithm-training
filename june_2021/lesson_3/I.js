@@ -56,7 +56,18 @@ function inputProcessing(lines) {
 }
 
 (async () => {
-  const inputLines = ['3', '3', 'Russian', 'English', 'Japanese', '2', 'Russian', 'English', '1', 'English'];
+  const inputLines = [
+    '3',
+    '3',
+    'Russian',
+    'English',
+    'Japanese',
+    '2',
+    'Russian',
+    'English',
+    '1',
+    'English',
+  ];
   console.log({ inputLines });
 
   const outputLines = inputProcessing(inputLines);

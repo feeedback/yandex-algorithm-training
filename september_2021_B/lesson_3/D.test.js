@@ -4,7 +4,10 @@ import fn from './D.js';
 
 describe('september_2021_B/lesson_3/D', () => {
   test('1', () => {
-    assert.strictEqual(fn(['10', '1 2 3 4 5', 'YES', '2 4 6 8 10', 'NO', 'HELP']), '1 3 5');
+    assert.strictEqual(
+      fn(['10', '1 2 3 4 5', 'YES', '2 4 6 8 10', 'NO', 'HELP']),
+      '1 3 5'
+    );
   });
 
   test('2', () => {
@@ -32,8 +35,9 @@ describe('september_2021_B/lesson_3/D', () => {
         '10',
         'NO',
         'HELP',
-      ])
-      , '5');
+      ]),
+      '5'
+    );
   });
 
   test('3 BOT', () => {
@@ -51,8 +55,9 @@ describe('september_2021_B/lesson_3/D', () => {
         '3 7 8 9 10 14 17 20 22 23 24 25 26 27 28 30 34 40 42 43 45 47 48 49 50 51 52 53 54 55 59 62 63 66 67 72 73 75 77 81 83 84 86 89 92 93 94 96 98 100',
         'YES',
         'HELP',
-      ])
-      , '23 81 83');
+      ]),
+      '23 81 83'
+    );
   });
 
   test('4 BOT~analog', () => {

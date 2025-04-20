@@ -36,7 +36,10 @@ const createBinarySearchIndexFn = (sortedNums, compareFn = (a, b) => a < b) => {
 };
 
 function isHasElementArrayInOther(sortedArrN, arrayK) {
-  const binarySearchIndex = createBinarySearchIndexFn(sortedArrN, (a, b) => a < b);
+  const binarySearchIndex = createBinarySearchIndexFn(
+    sortedArrN,
+    (a, b) => a < b
+  );
 
   return arrayK.map((num) => (binarySearchIndex(num) !== null ? 'YES' : 'NO'));
 }

@@ -28,7 +28,8 @@
 // https://contest.yandex.ru/contest/27393/problems/H/
 
 function inputProcessing(lines) {
-  const getMinTimeGeneral = (timeOnStation, timeInWay, n) => timeOnStation * n + timeInWay * (n - 1);
+  const getMinTimeGeneral = (timeOnStation, timeInWay, n) =>
+    timeOnStation * n + timeInWay * (n - 1);
   const getMaxTimeGeneral = (timeOnStation, timeInWay, n) =>
     getMinTimeGeneral(timeOnStation, timeInWay, n) + timeInWay * 2;
   // const getMaxTimeGeneral = (timeOnStation, timeInWay, n) =>

@@ -31,7 +31,8 @@ function calcMinBoardSize(width, height, count) {
   const right = Math.max(width * count, height * count);
 
   const isCountBoardCellEnough = (maxSideCount) =>
-    intDivision(maxSideCount, width) * intDivision(maxSideCount, height) >= count;
+    intDivision(maxSideCount, width) * intDivision(maxSideCount, height) >=
+    count;
 
   return binarySearch(left, right, isCountBoardCellEnough);
 }
@@ -56,12 +57,18 @@ function calcMinBoardSizeByFormula(width, height, count) {
   const sqrtCount = Math.sqrt(count);
 
   let maxCountByMaxSide = Math.ceil(sqrtCount / aspectRatioSqrt);
-  while (intDivision(maxCountByMaxSide * maxSide, minSide) * maxCountByMaxSide < count) {
+  while (
+    intDivision(maxCountByMaxSide * maxSide, minSide) * maxCountByMaxSide <
+    count
+  ) {
     maxCountByMaxSide += 1;
   }
   let maxCountByMinSide = Math.ceil(sqrtCount * aspectRatioSqrt);
 
-  while (intDivision(maxCountByMinSide * minSide, maxSide) * maxCountByMinSide < count) {
+  while (
+    intDivision(maxCountByMinSide * minSide, maxSide) * maxCountByMinSide <
+    count
+  ) {
     maxCountByMinSide += 1;
   }
 

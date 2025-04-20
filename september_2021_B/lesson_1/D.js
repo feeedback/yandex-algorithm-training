@@ -11,7 +11,8 @@
 function calcBetterCoordForBuildSchool(studentsCount, studentsHomeCoordArr) {
   const lowMiddle = Math.floor((studentsCount - 1) / 2);
   const highMiddle = Math.ceil((studentsCount - 1) / 2);
-  const median = (studentsHomeCoordArr[lowMiddle] + studentsHomeCoordArr[highMiddle]) / 2;
+  const median =
+    (studentsHomeCoordArr[lowMiddle] + studentsHomeCoordArr[highMiddle]) / 2;
 
   return Math.round(median);
 }

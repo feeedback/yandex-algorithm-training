@@ -48,7 +48,9 @@ function inputProcessing(lines) {
   // eslint-disable-next-line no-unused-vars
   const [N, M, K] = lines[0].split(' ').map(Number);
   const matrix = lines.slice(1, 1 + N).map((xy) => xy.split(' ').map(Number));
-  const queriesRectangleSum = lines.slice(1 + N).map((xy) => xy.split(' ').map(Number));
+  const queriesRectangleSum = lines
+    .slice(1 + N)
+    .map((xy) => xy.split(' ').map(Number));
 
   return calcMatrixSum(matrix, queriesRectangleSum, N, M);
 }

@@ -31,7 +31,11 @@ function minCountSegmentsCoverQuerySegment22(querySize, segments) {
     events.push({ time: end, type: EVENT_TYPE.end, size: end - begin + 1 });
   }
 
-  events.sort((prev, next) => prev.time - next.time || EVENT_TYPE_ORDER[prev.type] - EVENT_TYPE_ORDER[next.type]);
+  events.sort(
+    (prev, next) =>
+      prev.time - next.time ||
+      EVENT_TYPE_ORDER[prev.type] - EVENT_TYPE_ORDER[next.type]
+  );
 
   console.log({ querySize, events });
 
