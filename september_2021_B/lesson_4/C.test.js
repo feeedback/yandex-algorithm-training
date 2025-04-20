@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';;
 import fn from './C.js';
 
 test('1', () => {
-  assert.strictEqual(
+  assert.deepStrictEqual(
     fn([
       'hi',
       'hi',
@@ -32,7 +32,7 @@ test('1', () => {
 });
 
 test('2', () => {
-  assert.strictEqual(fn(['oh you touch my tralala', 'mmm my ding ding dong']), [
+  assert.deepStrictEqual(fn(['oh you touch my tralala', 'mmm my ding ding dong']), [
     'ding',
     'my',
     'dong',
@@ -45,5 +45,5 @@ test('2', () => {
 });
 
 test('3', () => {
-  assert.strictEqual(fn(['ai ai ai ai ai ai ai ai ai ai']), ['ai']);
+  assert.deepStrictEqual(fn(['ai ai ai ai ai ai ai ai ai ai']), ['ai']);
 });

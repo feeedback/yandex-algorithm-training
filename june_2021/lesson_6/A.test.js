@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';;
 import fn from './A.js';
 
 test('1', () => {
-  assert.strictEqual(
+  assert.deepStrictEqual(
     fn([
       '10 10',
       '1 61 126 217 2876 6127 39162 98126 712687 1000000000',
@@ -13,7 +13,7 @@ test('1', () => {
 });
 
 test('2', () => {
-  assert.strictEqual(fn(['10 10', '-8 -6 -4 -4 -2 -1 0 2 3 3 ', '8 3 -3 -2 2 -1 2 9 -8 0']), [
+  assert.deepStrictEqual(fn(['10 10', '-8 -6 -4 -4 -2 -1 0 2 3 3 ', '8 3 -3 -2 2 -1 2 9 -8 0']), [
     'NO',
     'YES',
     'NO',
@@ -28,5 +28,5 @@ test('2', () => {
 });
 
 test('3', () => {
-  assert.strictEqual(fn(['10 5', '1 2 3 4 5 6 7 8 9 10', '-2 0 4 9 12']), ['NO', 'NO', 'YES', 'YES', 'NO']);
+  assert.deepStrictEqual(fn(['10 5', '1 2 3 4 5 6 7 8 9 10', '-2 0 4 9 12']), ['NO', 'NO', 'YES', 'YES', 'NO']);
 });

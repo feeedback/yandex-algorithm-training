@@ -60,6 +60,6 @@ for (let i = 1; i <= data.length; i++) {
   const [input, output] = data[i - 1];
 
   test(`${i}`, () => {
-    assert.strictEqual(fn(splitLine(input)), splitLine(output));
+    assert.deepStrictEqual(fn(splitLine(input)), splitLine(output));
   });
 }

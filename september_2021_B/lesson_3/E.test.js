@@ -3,14 +3,14 @@ import assert from 'node:assert/strict';;
 import fn from './E.js';
 
 test('1', () => {
-  assert.strictEqual(fn(['3', 'ABC', 'A37', 'BCDA', '2', 'A317BD', 'B137AC']), ['B137AC']);
+  assert.deepStrictEqual(fn(['3', 'ABC', 'A37', 'BCDA', '2', 'A317BD', 'B137AC']), ['B137AC']);
 });
 
 test('2', () => {
-  assert.strictEqual(fn(['2', '1ABC', '3A4B', '3', 'A143BC', 'C143AB', 'AAABC1']), ['A143BC', 'C143AB']);
+  assert.deepStrictEqual(fn(['2', '1ABC', '3A4B', '3', 'A143BC', 'C143AB', 'AAABC1']), ['A143BC', 'C143AB']);
 });
 test('3 from Bot', () => {
-  assert.strictEqual(
+  assert.deepStrictEqual(
     fn([
       '1',
       'AAAAAAAAAAAA',

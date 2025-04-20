@@ -7,15 +7,15 @@ test('1', () => {
 });
 
 test('2', () => {
-  assert.strictEqual(fn(['1', '-1 0', '0 1', '0 0']), ['1', '0 1']);
+  assert.deepStrictEqual(fn(['1', '-1 0', '0 1', '0 0']), ['1', '0 1']);
 });
 
 test('my', () => {
-  assert.strictEqual(fn(['2', '0 2', '0 0']), ['1', '0 2']);
+  assert.deepStrictEqual(fn(['2', '0 2', '0 0']), ['1', '0 2']);
 });
 
 test('my 2', () => {
-  assert.strictEqual(fn(['2', '0 5', '0 0']), ['1', '0 5']);
+  assert.deepStrictEqual(fn(['2', '0 5', '0 0']), ['1', '0 5']);
 });
 
 test('my 3', () => {
@@ -23,7 +23,7 @@ test('my 3', () => {
 });
 
 test('my 4', () => {
-  assert.strictEqual(fn(['2', '0 1', '1 1', '1 2', '0 0']), ['2', '0 1', '1 2']);
+  assert.deepStrictEqual(fn(['2', '0 1', '1 1', '1 2', '0 0']), ['2', '0 1', '1 2']);
 });
 
 // test('my 5', () => {

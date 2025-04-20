@@ -4,7 +4,7 @@ import fn from './9.js';
 import { multiLineStrToArrStr as toLines } from '../../utils.js';
 
 test('1', () => {
-  assert.strictEqual(
+  assert.deepStrictEqual(
     fn(
       toLines(
         `3 3 2
